@@ -1,0 +1,15 @@
+export const PROVINCES = [
+  { code: "QC", fr: "Québec", en: "Québec" },
+  { code: "ON", fr: "Ontario", en: "Ontario" },
+  { code: "BC", fr: "Colombie-Britannique", en: "British Columbia" },
+  { code: "AB", fr: "Alberta", en: "Alberta" },
+  { code: "MB", fr: "Manitoba", en: "Manitoba" },
+  { code: "SK", fr: "Saskatchewan", en: "Saskatchewan" },
+  { code: "NS", fr: "Nouvelle-Écosse", en: "Nova Scotia" },
+  { code: "NB", fr: "Nouveau-Brunswick", en: "New Brunswick" },
+  { code: "NL", fr: "Terre-Neuve-et-Labrador", en: "Newfoundland and Labrador" },
+  { code: "PE", fr: "Île-du-Prince-Édouard", en: "Prince Edward Island" },
+  { code: "YT", fr: "Yukon", en: "Yukon" },
+  { code: "NT", fr: "Territoires du Nord-Ouest", en: "Northwest Territories" },
+  { code: "NU", fr: "Nunavut", en: "Nunavut" },
+] as const;
