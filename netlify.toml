@@ -1,0 +1,8 @@
+# Déploiement Netlify : Next.js est pris en charge nativement (adaptateur OpenNext),
+# aucune extension à installer.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
