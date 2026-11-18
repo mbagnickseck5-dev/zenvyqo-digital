@@ -8,6 +8,8 @@ import { PLANS, getPlan, type PlanId } from "@/lib/plans";
 import { PROVINCES } from "@/lib/provinces";
 import { site } from "@/lib/site";
 import { btn } from "@/lib/ui";
+import { leadWhatsAppUrl, sendToApi, sendToNetlifyForms, type LeadPayload } from "@/lib/leadDelivery";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import { leadSchema, type LeadErrorCode } from "@/lib/validation";
 
 type FormText = Dictionary["form"];
@@ -60,7 +62,8 @@ export function LeadForm({
   const [plan, setPlan] = useState<PlanId | "">(initialPlan ?? "");
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [result, setResult] = useState<{ id: string | null; demo: boolean }>({ id: null, demo: false });
+  const [result, setResult] = useState<{ id: string | null; captured: boolean }>({ id: null, captured: false });
+  const [wa, setWa] = useState<{ url: string | null; opened: boolean }>({ url: null, opened: false });
   const [payState, setPayState] = useState<"idle" | "loading" | "error">("idle");
 
   const isPlan = variant === "plan";
@@ -70,7 +73,7 @@ export function LeadForm({
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    const payload = { ...values, source: variant, locale, plan: isPlan && plan ? plan : null };
+    const payload: LeadPayload = { ...values, source: variant, locale, plan: isPlan && plan ? plan : null };
     const parsed = leadSchema.safeParse(payload);
 
     if (!parsed.success) {
@@ -88,20 +91,30 @@ export function LeadForm({
     }
 
     setErrors({});
-    setStatus("sending");
-    try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json().catch(() => null);
-      if (!res.ok || !data?.ok) throw new Error("lead_failed");
-      setResult({ id: data.id ?? null, demo: Boolean(data.demo) });
-      setStatus("success");
-    } catch {
-      setStatus("error");
+
+    // 1. WhatsApp s'ouvre tout de suite, dans le geste du visiteur (sinon le navigateur le bloque),
+    //    avec toute la demande déjà rédigée et adressée au numéro WhatsApp Business.
+    const waUrl = leadWhatsAppUrl(payload, t);
+    let opened = false;
+    if (waUrl) {
+      const win = window.open(waUrl, "_blank");
+      if (win) {
+        win.opener = null;
+        opened = true;
+      }
     }
+    setWa({ url: waUrl, opened });
+
+    // 2. En parallèle : copie de sauvegarde (Netlify Forms) et API du site (Supabase si configuré).
+    setStatus("sending");
+    const [savedNetlify, api] = await Promise.all([sendToNetlifyForms(payload), sendToApi(payload)]);
+    const captured = savedNetlify || api.stored;
+    if (!captured && !waUrl) {
+      setStatus("error");
+      return;
+    }
+    setResult({ id: api.id, captured });
+    setStatus("success");
   }
 
   async function onPay() {
@@ -125,17 +138,34 @@ export function LeadForm({
     const chosen = getPlan(plan);
     return (
       <div role="status" className="flex flex-col items-start gap-4">
-        <CircleCheck className="size-12 text-electric" aria-hidden="true" />
-        <h3 className="font-display text-2xl font-extrabold">{t.successTitle}</h3>
-        <p className="text-muted">{t.successText}</p>
+        {wa.url ? (
+          <>
+            <WhatsAppIcon className="size-12 text-[#25D366]" />
+            <h3 className="font-display text-2xl font-extrabold">{t.waTitle}</h3>
+            <p className="text-muted">{wa.opened ? t.waOpened : t.waReady}</p>
+            <a
+              href={wa.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${btn.base} bg-[#25D366] text-[#073B1F] shadow-lg shadow-[#25D366]/25 hover:bg-[#1FBE5B]`}
+            >
+              <WhatsAppIcon className="size-5" />
+              {t.waOpen}
+            </a>
+            {result.captured && <p className="text-sm text-muted">{t.waBackup}</p>}
+          </>
+        ) : (
+          <>
+            <CircleCheck className="size-12 text-electric" aria-hidden="true" />
+            <h3 className="font-display text-2xl font-extrabold">{t.successTitle}</h3>
+            <p className="text-muted">{t.successText}</p>
+          </>
+        )}
         {values.wantsCall && <p className="text-muted">{t.successCall}</p>}
         {chosen && (
           <p className="font-semibold">
             {t.successPlan} {chosen.name}
           </p>
-        )}
-        {result.demo && (
-          <p className="rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">{t.demoNote}</p>
         )}
         {chosen && site.stripeEnabled && (
           <div className="mt-2 w-full rounded-xl border border-line bg-mist p-5">
@@ -350,6 +380,12 @@ export function LeadForm({
           {status === "sending" && <LoaderCircle className="size-5 animate-spin" aria-hidden="true" />}
           {status === "sending" ? t.sending : isPlan ? t.submitQuote : t.submitContact}
         </button>
+        {site.whatsapp && (
+          <p className="flex items-center gap-2 text-sm text-muted">
+            <WhatsAppIcon className="size-4 shrink-0 text-[#25D366]" />
+            {t.waNote}
+          </p>
+        )}
       </div>
     </form>
   );

@@ -68,6 +68,16 @@ Toutes sont décrites dans `.env.example`.
 | `STRIPE_WEBHOOK_SECRET` | Secret de signature du webhook | Pour le suivi des paiements |
 | `STRIPE_ALLOW_LIVE` | `true` autorise une clé réelle | Seulement à l'activation |
 
+## Réception des demandes
+
+À l'envoi d'un formulaire (devis ou contact) :
+
+1. **WhatsApp** s'ouvre chez le visiteur avec sa demande déjà rédigée (forfait, nom, entreprise, courriel, téléphone, ville, secteur, projet, rappel souhaité), adressée au numéro WhatsApp Business de `src/lib/site.ts`. Le visiteur n'a plus qu'à appuyer sur « Envoyer ».
+2. **Copie de sauvegarde** dans Netlify Forms (formulaire `demande`, déclaré dans `public/__forms.html`) : Netlify → projet → Forms. Pour recevoir chaque demande par courriel : Forms → Form notifications → Add notification → Email notification.
+3. **Supabase** (facultatif, voir plus bas) via `/api/leads`.
+
+Le code est dans `src/lib/leadDelivery.ts`.
+
 ## Supabase : enregistrer les prospects
 
 1. Créer un projet sur supabase.com.
