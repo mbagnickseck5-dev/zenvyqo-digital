@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 
-export type VisualName = "hero" | "restaurant" | "salon" | "nettoyage";
+export type VisualName = "hero-sites" | "restaurant" | "salon" | "nettoyage";
 
 /**
  * Renvoie le chemin public d'un visuel s'il existe dans public/visuels/,

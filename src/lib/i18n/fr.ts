@@ -62,7 +62,7 @@ export const fr = {
     ctaQuote: "Demander un devis gratuit",
     location: "Montréal, Québec",
     locationSub: "et partout au Canada",
-    photoAlt: "Entrepreneur souriant travaillant sur son ordinateur portable, devant la silhouette d'une ville au crépuscule",
+    photoAlt: "Tablette, ordinateur portable et téléphone affichant des sites web modernes de rénovation, de restaurant et de salon de coiffure",
     previewLabel: "Aperçu d'un site web sur un ordinateur portable, devant la silhouette de Montréal",
     previewBrand: "Votre entreprise",
     previewTitle: "Bienvenue chez vous, en ligne",

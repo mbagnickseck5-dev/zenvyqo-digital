@@ -36,7 +36,7 @@ export function Hero({ locale, t }: Props) {
           </div>
           <p className="text-sm font-medium tracking-wide text-white/60">{t.slogan}</p>
         </div>
-        <HeroVisual t={h} image={visual("hero")} />
+        <HeroVisual t={h} image={visual("hero-sites")} />
       </div>
     </section>
   );

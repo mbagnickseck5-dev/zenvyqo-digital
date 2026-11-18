@@ -124,11 +124,11 @@ Pour la retirer : Netlify → Project configuration → Environment variables �
 
 ## Visuels
 
-Les quatre photos du site (hero et trois exemples du portfolio) sont générées par IA. Le script `scripts/fetch-visuals.mjs` les télécharge dans `public/visuels/` avant chaque compilation (`npm run build`).
+Les quatre visuels du site (héros `hero-sites.png` : tablette, portable et téléphone affichant des sites de démonstration ; trois exemples du portfolio) sont générés par IA. Le script `scripts/fetch-visuals.mjs` les télécharge dans `public/visuels/` avant chaque compilation (`npm run build`).
 
 - Si un téléchargement échoue, la compilation continue et la section affiche son illustration de secours.
 - Pour ne plus dépendre des liens d'origine : lancer `npm run build` une fois en local, puis commiter les quatre fichiers `public/visuels/*.png`. Un fichier présent n'est jamais retéléchargé.
-- Pour remplacer un visuel : déposer un fichier du même nom (`hero.png`, `restaurant.png`, `salon.png`, `nettoyage.png`).
+- Pour remplacer un visuel : déposer un fichier du même nom (`hero-sites.png`, `restaurant.png`, `salon.png`, `nettoyage.png`).
 
 ## Déploiement sur Netlify
 

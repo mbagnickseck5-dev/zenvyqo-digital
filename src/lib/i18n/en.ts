@@ -41,7 +41,7 @@ export const en: Dictionary = {
     ctaQuote: "Request a free quote",
     location: "Montréal, Québec",
     locationSub: "and across Canada",
-    photoAlt: "Smiling entrepreneur working on his laptop in front of a city skyline at dusk",
+    photoAlt: "Tablet, laptop and phone showing modern websites for a renovation company, a restaurant and a hair salon",
     previewLabel: "Preview of a website on a laptop, in front of the Montréal skyline",
     previewBrand: "Your business",
     previewTitle: "Welcome home, online",

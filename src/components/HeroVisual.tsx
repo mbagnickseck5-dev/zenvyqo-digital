@@ -51,7 +51,7 @@ export function HeroVisual({ t, image }: { t: Dictionary["hero"]; image?: string
             sizes="(min-width: 1280px) 560px, (min-width: 1024px) 45vw, (min-width: 640px) 576px, 100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-night-deep/70 via-transparent to-transparent" aria-hidden="true" />
+          <div className="absolute inset-0 bg-linear-to-t from-night-deep/30 via-transparent to-transparent" aria-hidden="true" />
         </div>
         <div className="zq-drop absolute -top-4 right-4 flex items-center gap-2.5 rounded-2xl bg-night-deep/95 px-4 py-2.5 text-white shadow-xl ring-1 ring-white/15">
           <MapPin className="size-5 text-cyan" aria-hidden="true" />
