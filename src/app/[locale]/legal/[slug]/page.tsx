@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { LEGAL_SLUGS, LOCALES, getDictionary, isLocale, type LegalSlug } from "@/lib/i18n";
+import { fillContact } from "@/lib/site";
 
 interface Params {
   params: Promise<{ locale: string; slug: string }>;
@@ -48,7 +49,7 @@ export default async function LegalPage({ params }: Params) {
           <h2 className="font-display text-xl font-bold">{section.heading}</h2>
           {section.paragraphs.map((p) => (
             <p key={p} className="mt-3 leading-relaxed text-muted">
-              {p}
+              {fillContact(p)}
             </p>
           ))}
         </section>

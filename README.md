@@ -58,7 +58,8 @@ Toutes sont décrites dans `.env.example`.
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | URL publique (SEO, retours Stripe) | En production |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | Affiche le bouton WhatsApp si renseigné | Non |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | Affiche le courriel de contact si renseigné | Non |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Remplace le courriel affiché (par défaut contactzenvyqo@gmail.com) | Non |
+| `NEXT_PUBLIC_CONTACT_PHONE` | Remplace le téléphone affiché (par défaut +1 514 552-5923) | Non |
 | `SUPABASE_URL` | URL du projet Supabase | Pour enregistrer les prospects |
 | `SUPABASE_SERVICE_ROLE_KEY` | Clé serveur Supabase (secrète) | Pour enregistrer les prospects |
 | `LEADS_WEBHOOK_URL` | Relaie chaque demande (Make, Zapier, n8n, Slack) | Non |
@@ -123,13 +124,13 @@ Le projet Netlify `zenvyqo-digital` existe déjà (https://zenvyqo-digital.netli
 ## À compléter avant la mise en ligne
 
 - [ ] Pages légales : tous les `[À COMPLÉTER]` dans `src/lib/i18n/fr.ts` et `en.ts` (éditeur, hébergeur, durée de conservation, responsable Loi 25, résiliation, propriété du site en fin d'abonnement), puis validation par un professionnel du droit.
-- [ ] Numéro WhatsApp et courriel de contact (variables d'environnement).
+- [ ] Numéro WhatsApp, si le bouton WhatsApp doit s'afficher (`NEXT_PUBLIC_WHATSAPP_NUMBER`). Le courriel et le téléphone sont déjà en place dans `src/lib/site.ts`.
 - [ ] FAQ « délais » : remplacer la réponse générale par vos délais réels si vous voulez vous engager sur un chiffre.
 - [ ] Portfolio : les trois projets sont des démonstrations, signalées comme telles. Les remplacer par de vraies réalisations dès que possible.
 - [ ] Visuel du hero : illustration en code (silhouette de ville + ordinateur). Pour une photo, modifier `src/components/HeroVisual.tsx`.
 - [ ] Image de partage (Open Graph) : ajouter `src/app/opengraph-image.png` (1200 × 630).
 
-Volontairement absents, faute d'informations réelles : témoignages clients, statistiques commerciales, numéro de téléphone, adresse physique.
+Volontairement absents, faute d'informations réelles : témoignages clients, statistiques commerciales, adresse physique.
 
 ## Commandes
 

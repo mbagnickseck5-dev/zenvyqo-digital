@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, Phone, X } from "lucide-react";
 import type { Dictionary, Locale } from "@/lib/i18n";
+import { site } from "@/lib/site";
 import { Logo } from "./Logo";
 import { useQuote } from "./QuoteProvider";
 
@@ -41,14 +42,14 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary["nav"] }) 
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-night/95 text-white backdrop-blur">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
         <Link href={`/${locale}`} aria-label="Zenvyqo Digital" className="shrink-0">
           <Logo />
         </Link>
 
-        <nav aria-label={t.main} className="hidden items-center gap-7 lg:flex">
+        <nav aria-label={t.main} className="hidden items-center gap-5 lg:flex xl:gap-6">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="py-3 text-sm font-medium text-white/80 transition hover:text-white">
+            <Link key={l.href} href={l.href} className="whitespace-nowrap py-3 text-sm font-medium text-white/80 transition hover:text-white">
               {l.label}
             </Link>
           ))}
@@ -56,10 +57,24 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary["nav"] }) 
 
         <div className="flex items-center gap-2">
           <span className="hidden sm:block">{localeSwitch}</span>
+          <a
+            href={`tel:${site.phone}`}
+            className="hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-xl border border-white/30 px-4 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10 xl:inline-flex"
+          >
+            <Phone className="size-4" aria-hidden="true" />
+            {site.phoneDisplay}
+          </a>
+          <a
+            href={`tel:${site.phone}`}
+            aria-label={`${t.call} ${site.phoneDisplay}`}
+            className="grid size-11 place-items-center rounded-lg text-white transition hover:bg-white/10 xl:hidden"
+          >
+            <Phone className="size-5" aria-hidden="true" />
+          </a>
           <button
             type="button"
             onClick={() => open()}
-            className="hidden min-h-11 items-center gap-2 rounded-xl bg-electric px-5 text-sm font-semibold text-white transition hover:bg-electric-dark sm:inline-flex"
+            className="hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-xl bg-electric px-5 text-sm font-semibold text-white transition hover:bg-electric-dark sm:inline-flex"
           >
             {t.quote}
             <ArrowRight className="size-4" aria-hidden="true" />
@@ -87,6 +102,12 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary["nav"] }) 
                 </Link>
               </li>
             ))}
+            <li>
+              <a href={`tel:${site.phone}`} className="flex min-h-12 items-center gap-2.5 text-base font-medium text-white/90">
+                <Phone className="size-4" aria-hidden="true" />
+                {site.phoneDisplay}
+              </a>
+            </li>
           </ul>
           <div className="mt-3 flex items-center justify-between gap-3">
             {localeSwitch}

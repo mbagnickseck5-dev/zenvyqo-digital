@@ -18,7 +18,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) notFound();
   const t = getDictionary(locale);
 
-  // Données structurées : service + offres. Aucune adresse ni téléphone inventés.
+  // Données structurées : service, coordonnées réelles et offres (aucune adresse physique).
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -26,6 +26,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     url: `${site.url}/${locale}`,
     description: t.meta.description,
     slogan: t.slogan,
+    telephone: site.phone,
+    email: site.email,
     areaServed: [
       { "@type": "City", name: "Montréal" },
       { "@type": "AdministrativeArea", name: "Québec" },

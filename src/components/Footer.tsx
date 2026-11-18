@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Mail, Phone } from "lucide-react";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { Logo } from "./Logo";
@@ -25,11 +26,21 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
           <Logo />
           <p className="mt-5 font-display text-lg font-bold text-cyan">{t.slogan}</p>
           <p className="mt-2 max-w-xs text-sm text-white/70">{t.footer.serving}</p>
-          {site.email && (
-            <a href={`mailto:${site.email}`} className={`${linkClass} mt-3 underline`}>
-              {site.email}
-            </a>
-          )}
+          <h2 className="sr-only">{t.footer.contactTitle}</h2>
+          <ul className="mt-4 flex flex-col gap-1 text-sm">
+            <li>
+              <a href={`tel:${site.phone}`} className={`${linkClass} gap-2`}>
+                <Phone className="size-4 text-cyan" aria-hidden="true" />
+                {site.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${site.email}`} className={`${linkClass} gap-2`}>
+                <Mail className="size-4 text-cyan" aria-hidden="true" />
+                {site.email}
+              </a>
+            </li>
+          </ul>
         </div>
         <nav aria-label={t.footer.navTitle}>
           <h2 className="font-display text-sm font-bold uppercase tracking-widest text-white/60">{t.footer.navTitle}</h2>

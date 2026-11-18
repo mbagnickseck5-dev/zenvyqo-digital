@@ -24,6 +24,7 @@ export const fr = {
     closeMenu: "Fermer le menu",
     main: "Navigation principale",
     switchLabel: "Passer à l'anglais",
+    call: "Appeler le",
     skip: "Aller au contenu",
   },
   hero: {
@@ -202,10 +203,11 @@ export const fr = {
     eyebrow: "Contact",
     title: "Parlons de votre projet",
     intro:
-      "Une question avant de choisir un forfait ? Écrivez-nous, nous vous répondons par courriel.",
+      "Une question avant de choisir un forfait ? Appelez-nous ou écrivez-nous, nous vous répondons rapidement.",
     whatsapp: "Écrire sur WhatsApp",
     whatsappMessage: "Bonjour Zenvyqo Digital, j'aimerais un devis pour un site web.",
     emailLabel: "Courriel",
+    phoneLabel: "Téléphone",
   },
   form: {
     quoteTitle: "Demande de devis",
@@ -262,6 +264,7 @@ export const fr = {
   },
   footer: {
     navTitle: "Navigation",
+    contactTitle: "Contact",
     legalTitle: "Informations légales",
     legal: "Mentions légales",
     privacy: "Politique de confidentialité",
@@ -288,7 +291,7 @@ export const fr = {
             paragraphs: [
               "Ce site est édité par Zenvyqo Digital.",
               "Dénomination légale : [À COMPLÉTER]. Forme juridique : [À COMPLÉTER]. Numéro d'entreprise : [À COMPLÉTER]. Adresse du siège : [À COMPLÉTER].",
-              "Responsable de la publication : [À COMPLÉTER]. Contact : [COURRIEL À COMPLÉTER].",
+              "Responsable de la publication : [À COMPLÉTER]. Contact : {email}, {phone}.",
             ],
           },
           {
@@ -330,7 +333,7 @@ export const fr = {
             heading: "Vos droits",
             paragraphs: [
               "Conformément aux lois applicables au Québec et au Canada, dont la Loi 25, vous pouvez demander l'accès à vos renseignements, leur rectification ou leur suppression.",
-              "Responsable de la protection des renseignements personnels : [NOM ET COURRIEL À COMPLÉTER].",
+              "Responsable de la protection des renseignements personnels : [NOM À COMPLÉTER], joignable à {email}.",
             ],
           },
         ],

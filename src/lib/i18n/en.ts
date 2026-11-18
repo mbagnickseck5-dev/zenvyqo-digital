@@ -19,6 +19,7 @@ export const en: Dictionary = {
     closeMenu: "Close menu",
     main: "Main navigation",
     switchLabel: "Switch to French",
+    call: "Call",
     skip: "Skip to content",
   },
   hero: {
@@ -189,10 +190,11 @@ export const en: Dictionary = {
   contact: {
     eyebrow: "Contact",
     title: "Let's talk about your project",
-    intro: "A question before choosing a plan? Write to us and we'll reply by email.",
+    intro: "A question before choosing a plan? Call or write to us and we'll get back to you quickly.",
     whatsapp: "Message us on WhatsApp",
     whatsappMessage: "Hello Zenvyqo Digital, I'd like a quote for a website.",
     emailLabel: "Email",
+    phoneLabel: "Phone",
   },
   form: {
     quoteTitle: "Quote request",
@@ -247,6 +249,7 @@ export const en: Dictionary = {
   },
   footer: {
     navTitle: "Navigation",
+    contactTitle: "Contact",
     legalTitle: "Legal",
     legal: "Legal notice",
     privacy: "Privacy policy",
@@ -273,7 +276,7 @@ export const en: Dictionary = {
             paragraphs: [
               "This site is published by Zenvyqo Digital.",
               "Legal name: [TO COMPLETE]. Legal form: [TO COMPLETE]. Business number: [TO COMPLETE]. Registered address: [TO COMPLETE].",
-              "Publication manager: [TO COMPLETE]. Contact: [EMAIL TO COMPLETE].",
+              "Publication manager: [TO COMPLETE]. Contact: {email}, {phone}.",
             ],
           },
           {
@@ -315,7 +318,7 @@ export const en: Dictionary = {
             heading: "Your rights",
             paragraphs: [
               "Under the laws applicable in Québec and Canada, including Law 25, you may ask to access, correct or delete your information.",
-              "Person responsible for the protection of personal information: [NAME AND EMAIL TO COMPLETE].",
+              "Person responsible for the protection of personal information: [NAME TO COMPLETE], reachable at {email}.",
             ],
           },
         ],

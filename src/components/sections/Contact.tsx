@@ -1,4 +1,4 @@
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle, Phone } from "lucide-react";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { site, whatsappUrl } from "@/lib/site";
 import { LeadForm } from "../LeadForm";
@@ -21,18 +21,20 @@ export function Contact({ locale, t }: Props) {
           <h2 className={`${h2} mt-4`}>{c.title}</h2>
           <p className="mt-4 text-lg text-muted">{c.intro}</p>
           <div className="mt-8 flex flex-col items-start gap-4">
+            <a href={`tel:${site.phone}`} className={btn.outlineDark} aria-label={`${c.phoneLabel} ${site.phoneDisplay}`}>
+              <Phone className="size-5" aria-hidden="true" />
+              {site.phoneDisplay}
+            </a>
             {wa && (
               <a href={wa} target="_blank" rel="noopener noreferrer" className={btn.outlineDark}>
                 <MessageCircle className="size-5" aria-hidden="true" />
                 {c.whatsapp}
               </a>
             )}
-            {site.email && (
-              <a href={`mailto:${site.email}`} className="inline-flex min-h-11 items-center gap-2.5 font-semibold text-electric-dark underline">
-                <Mail className="size-5" aria-hidden="true" />
-                {site.email}
-              </a>
-            )}
+            <a href={`mailto:${site.email}`} className="inline-flex min-h-11 items-center gap-2.5 font-semibold text-electric-dark underline" aria-label={`${c.emailLabel} ${site.email}`}>
+              <Mail className="size-5" aria-hidden="true" />
+              {site.email}
+            </a>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
