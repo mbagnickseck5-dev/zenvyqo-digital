@@ -158,9 +158,9 @@ export const en: Dictionary = {
       "The three projects below are demonstrations, not real client sites. They show the kind of result possible for your industry.",
     demoBadge: "Demonstration example",
     items: [
-      { name: "Restaurant", type: "Business site with menu and booking", headline: "A table is waiting" },
-      { name: "Hair salon", type: "Business site with appointment booking", headline: "Your style, by appointment" },
-      { name: "Cleaning company", type: "Business site with quote requests", headline: "Spotless spaces" },
+      { name: "Restaurant", type: "Business site with menu and booking", headline: "A table is waiting", alt: "Preview of a restaurant website on a laptop and a phone" },
+      { name: "Hair salon", type: "Business site with appointment booking", headline: "Your style, by appointment", alt: "Preview of a hair salon website on a laptop and a phone" },
+      { name: "Cleaning company", type: "Business site with quote requests", headline: "Spotless spaces", alt: "Preview of a cleaning company website on a laptop and a phone" },
     ],
   },
   about: {
