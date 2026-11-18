@@ -97,6 +97,7 @@ export default function RestaurantDemo() {
             fallback="bg-linear-to-br from-[#4A2A18] via-[#2A1A10] to-[#14100D]"
           />
           <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#14100D] via-[#14100D]/60 to-[#14100D]/10" aria-hidden="true" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#14100D]/75 via-[#14100D]/25 to-transparent" aria-hidden="true" />
           <div className="mx-auto w-full max-w-6xl px-5 pb-16 pt-40 sm:pb-24">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C9A26A]">Bistro de quartier · Plateau-Mont-Royal</p>
             <h1 className={`${serif} mt-5 max-w-3xl text-5xl leading-[1.02] sm:text-7xl`}>Une table vous attend</h1>
