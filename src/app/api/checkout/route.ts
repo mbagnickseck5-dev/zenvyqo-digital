@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { COMMITMENT_MONTHS, PLAN_IDS, getPlan } from "@/lib/plans";
+import { COMMITMENT_MONTHS, FOUNDERS_OFFER, PLAN_IDS, getPlan } from "@/lib/plans";
 import { getStripe } from "@/lib/stripe";
 
 export const runtime = "nodejs";
@@ -15,7 +15,8 @@ const bodySchema = z.object({
 /**
  * Crée une session Stripe Checkout : abonnement mensuel + frais de création
  * (facturés une seule fois sur la première facture). Les montants viennent
- * de src/lib/plans.ts, jamais du navigateur.
+ * de src/lib/plans.ts, jamais du navigateur. Pendant l'offre « clients
+ * fondateurs », les frais de création ne sont pas facturés.
  */
 export async function POST(request: Request) {
   const state = getStripe();
@@ -30,7 +31,21 @@ export async function POST(request: Request) {
   const plan = getPlan(planId)!;
   const origin = (process.env.NEXT_PUBLIC_SITE_URL ?? new URL(request.url).origin).replace(/\/$/, "");
   const fr = locale === "fr";
-  const metadata = { plan: plan.id, lead_id: leadId ?? "", commitment_months: String(COMMITMENT_MONTHS) };
+  const founders = FOUNDERS_OFFER.active;
+  const metadata = {
+    plan: plan.id,
+    lead_id: leadId ?? "",
+    commitment_months: String(founders ? FOUNDERS_OFFER.commitmentMonths : COMMITMENT_MONTHS),
+    founders_offer: founders ? "true" : "false",
+  };
+  const setupFee = {
+    quantity: 1,
+    price_data: {
+      currency: "cad",
+      unit_amount: plan.setup * 100,
+      product_data: { name: fr ? `${plan.name} : frais de création` : `${plan.name}: setup fee` },
+    },
+  };
 
   try {
     const session = await state.stripe.checkout.sessions.create({
@@ -47,14 +62,7 @@ export async function POST(request: Request) {
             product_data: { name: fr ? `${plan.name} : abonnement mensuel` : `${plan.name}: monthly subscription` },
           },
         },
-        {
-          quantity: 1,
-          price_data: {
-            currency: "cad",
-            unit_amount: plan.setup * 100,
-            product_data: { name: fr ? `${plan.name} : frais de création` : `${plan.name}: setup fee` },
-          },
-        },
+        ...(founders ? [] : [setupFee]),
       ],
       metadata,
       subscription_data: { metadata },

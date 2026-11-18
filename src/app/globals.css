@@ -11,8 +11,9 @@
   --color-muted: #45546e;
   --color-line: #dce3ee;
 
-  --font-display: "Montserrat Variable", "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* --font-montserrat et --font-inter sont définies par next/font (src/lib/fonts.ts) sur <html>. */
+  --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -43,10 +44,33 @@ dialog::backdrop {
   backdrop-filter: blur(4px);
 }
 
+/* Animations d'entrée du héros, en CSS (aucun JavaScript nécessaire). */
+@keyframes zq-drop {
+  from { opacity: 0; transform: translateY(-12px); }
+}
+@keyframes zq-slide {
+  from { opacity: 0; transform: translateX(-16px); }
+}
+@keyframes zq-rise {
+  from { opacity: 0; transform: translateY(30px); }
+}
+@keyframes zq-float {
+  50% { transform: translateY(-8px); }
+}
+.zq-drop { animation: zq-drop 0.5s ease-out 0.5s both; }
+.zq-slide { animation: zq-slide 0.5s ease-out 0.9s both; }
+.zq-laptop { animation: zq-rise 0.6s ease-out both, zq-float 6s ease-in-out 0.6s infinite; }
+
+@keyframes zq-pulse {
+  50% { opacity: 0.55; }
+}
+.zq-skeleton { animation: zq-pulse 1.6s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

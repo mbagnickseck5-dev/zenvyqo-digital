@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ArrowRight, Menu, Phone, X } from "lucide-react";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { preloadLeadForm } from "./LazyLeadForm";
 import { Logo } from "./Logo";
 import { useQuote } from "./QuoteProvider";
 
@@ -30,26 +31,28 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary["nav"] }) 
   const localeSwitch = (
     <Link
       href={otherHref}
+      prefetch={false}
       hrefLang={other}
-      aria-label={t.switchLabel}
       className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-sm font-semibold text-white/80 transition hover:text-white"
     >
       <span className={locale === "fr" ? "text-cyan" : ""}>FR</span>
       <span aria-hidden="true" className="text-white/30">/</span>
       <span className={locale === "en" ? "text-cyan" : ""}>EN</span>
+      {/* Nom accessible : le texte visible (FR EN) suivi de l'action. */}
+      <span className="sr-only"> : {t.switchLabel}</span>
     </Link>
   );
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-night/95 text-white backdrop-blur">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
-        <Link href={`/${locale}`} aria-label="Zenvyqo Digital" className="shrink-0">
+        <Link href={`/${locale}`} prefetch={false} className="shrink-0">
           <Logo />
         </Link>
 
         <nav aria-label={t.main} className="hidden items-center gap-5 lg:flex xl:gap-6">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="whitespace-nowrap py-3 text-sm font-medium text-white/80 transition hover:text-white">
+            <Link key={l.href} href={l.href} prefetch={false} className="whitespace-nowrap py-3 text-sm font-medium text-white/80 transition hover:text-white">
               {l.label}
             </Link>
           ))}
@@ -74,6 +77,9 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary["nav"] }) 
           <button
             type="button"
             onClick={() => open()}
+            onPointerEnter={preloadLeadForm}
+            onFocus={preloadLeadForm}
+            onTouchStart={preloadLeadForm}
             className="hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-xl bg-electric px-5 text-sm font-semibold text-white transition hover:bg-electric-dark sm:inline-flex"
           >
             {t.quote}
@@ -97,7 +103,7 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary["nav"] }) 
           <ul className="flex flex-col">
             {links.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} onClick={() => setMenuOpen(false)} className="flex min-h-12 items-center text-base font-medium text-white/90">
+                <Link href={l.href} prefetch={false} onClick={() => setMenuOpen(false)} className="flex min-h-12 items-center text-base font-medium text-white/90">
                   {l.label}
                 </Link>
               </li>
@@ -117,6 +123,8 @@ export function Header({ locale, t }: { locale: Locale; t: Dictionary["nav"] }) 
                 setMenuOpen(false);
                 open();
               }}
+              onTouchStart={preloadLeadForm}
+              onFocus={preloadLeadForm}
               className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-electric px-5 font-semibold text-white"
             >
               {t.quote}

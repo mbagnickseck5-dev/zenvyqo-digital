@@ -28,7 +28,7 @@ export function Hero({ locale, t }: Props) {
           </h1>
           <p className="max-w-xl text-lg text-white/80">{h.subtitle}</p>
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <Link href={`/${locale}#forfaits`} className={btn.primary}>
+            <Link href={`/${locale}#forfaits`} prefetch={false} className={btn.primary}>
               {h.ctaPlans}
               <ArrowRight className="size-5" aria-hidden="true" />
             </Link>

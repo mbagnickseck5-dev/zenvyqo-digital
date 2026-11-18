@@ -56,7 +56,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
           <ul className="mt-4 flex flex-col gap-1 text-sm">
             {nav.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className={linkClass}>
+                <Link href={l.href} prefetch={false} className={linkClass}>
                   {l.label}
                 </Link>
               </li>
@@ -68,7 +68,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
           <ul className="mt-4 flex flex-col gap-1 text-sm">
             {legal.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className={linkClass}>
+                <Link href={l.href} prefetch={false} className={linkClass}>
                   {l.label}
                 </Link>
               </li>

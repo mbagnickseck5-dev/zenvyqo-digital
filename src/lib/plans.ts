@@ -18,6 +18,24 @@ export interface Plan {
 
 export const COMMITMENT_MONTHS = 12;
 
+/**
+ * Offre de lancement « clients fondateurs » : frais de création offerts et
+ * engagement réduit, pour les premières entreprises clientes.
+ * Pour la retirer du site une fois les places attribuées : définir
+ * NEXT_PUBLIC_FOUNDERS_OFFER=false sur Netlify, puis relancer un déploiement.
+ */
+export const FOUNDERS_OFFER = {
+  active: process.env.NEXT_PUBLIC_FOUNDERS_OFFER !== "false",
+  spots: 5,
+  commitmentMonths: 3,
+} as const;
+
+/** Remplace {spots}, {months} (et les variables passées) dans un texte de l'offre. */
+export function offerText(text: string, vars: Record<string, string | number> = {}): string {
+  const all = { spots: FOUNDERS_OFFER.spots, months: FOUNDERS_OFFER.commitmentMonths, ...vars };
+  return Object.entries(all).reduce((s, [k, v]) => s.replaceAll(`{${k}}`, String(v)), text);
+}
+
 export const PLANS: Plan[] = [
   { id: "business-pro", name: "Business Pro", monthly: 69, setup: 149, featured: true },
   { id: "business-plus", name: "Business Plus", monthly: 99, setup: 249, featured: false },

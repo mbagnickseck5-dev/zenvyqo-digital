@@ -1,7 +1,7 @@
 import { Mail, Phone } from "lucide-react";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { site, whatsappUrl } from "@/lib/site";
-import { LeadForm } from "../LeadForm";
+import { DeferredLeadForm } from "../LazyLeadForm";
 import { WhatsAppIcon } from "../WhatsAppIcon";
 import { Reveal } from "../Reveal";
 import { btn, container, eyebrow, h2 } from "@/lib/ui";
@@ -40,7 +40,7 @@ export function Contact({ locale, t }: Props) {
         </Reveal>
         <Reveal delay={0.1}>
           <div className="rounded-2xl border border-line bg-white p-6 shadow-lg shadow-night/5 sm:p-8">
-            <LeadForm variant="contact" locale={locale} t={t.form} />
+            <DeferredLeadForm variant="contact" locale={locale} t={t.form} />
           </div>
         </Reveal>
       </div>

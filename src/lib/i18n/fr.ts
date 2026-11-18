@@ -2,16 +2,41 @@ import type { PlanId } from "../plans";
 
 export interface LegalPage {
   title: string;
-  sections: { heading: string; paragraphs: string[] }[];
+  /** Description pour les moteurs de recherche */
+  description: string;
+  sections: {
+    heading: string;
+    paragraphs: string[];
+    /** Section affichée seulement pendant l'offre « clients fondateurs » */
+    offerOnly?: boolean;
+  }[];
+}
+
+export interface FaqItem {
+  q: string;
+  a: string;
+  /** Phrase ajoutée à la réponse pendant l'offre « clients fondateurs » */
+  offerNote?: string;
 }
 
 export const fr = {
   meta: {
-    title: "Zenvyqo Digital | Création de sites web pour les PME à Montréal et au Canada",
+    title: "Création de site web à Montréal pour PME | Zenvyqo Digital",
     description:
-      "Sites vitrines, boutiques en ligne et référencement local pour les PME de Montréal, du Québec et du Canada. Forfaits mensuels à partir de 69 $ CA.",
+      "Conception de sites web pour les PME de Montréal, du Québec et du Canada : site vitrine, boutique en ligne, SEO local. Dès 69 $ CA/mois. Devis gratuit.",
+    ogAlt: "Zenvyqo Digital : création de sites web pour les PME de Montréal, du Québec et du Canada, dès 69 $ CA par mois",
   },
   slogan: "Votre croissance commence en ligne.",
+  // Les jetons {spots} et {months} viennent de FOUNDERS_OFFER (src/lib/plans.ts).
+  offer: {
+    bar: "Offre de lancement : création offerte et engagement de {months} mois pour nos {spots} premiers clients.",
+    barCta: "En profiter",
+    title: "Offre clients fondateurs",
+    text: "Pour nos {spots} premiers clients : frais de création offerts et engagement de {months} mois au lieu de 12. En échange, vous nous autorisez à présenter votre site dans nos réalisations.",
+    termsLink: "Conditions de l'offre",
+    setupWaived: "Frais de création offerts",
+    setupInstead: "au lieu de {amount}\u00a0$\u00a0CA",
+  },
   nav: {
     home: "Accueil",
     services: "Services",
@@ -86,9 +111,10 @@ export const fr = {
     setupSuffix: "$ CA de frais de création",
     popular: "Le plus populaire",
     choose: "Choisir ce forfait",
-    chooseAria: "Choisir le forfait",
     commitment:
       "Prix en dollars canadiens, avant taxes. Engagement initial de 12 mois.",
+    commitmentOffer:
+      "Prix en dollars canadiens, avant taxes. Engagement initial de 12 mois, ou de {months} mois avec l'offre clients fondateurs.",
     termsLink: "Lire les conditions d'abonnement",
     plans: {
       "business-pro": {
@@ -184,6 +210,8 @@ export const fr = {
       {
         q: "Comment se passent les paiements ?",
         a: "Vous réglez les frais de création au lancement du projet, puis une mensualité fixe. Les prix sont en dollars canadiens, avant taxes, avec un engagement initial de 12 mois. Le paiement se fait par carte, de façon sécurisée.",
+        offerNote:
+          "Offre de lancement : nos {spots} premiers clients ne paient pas de frais de création et s'engagent pour {months} mois seulement.",
       },
       {
         q: "Puis-je demander des modifications après la mise en ligne ?",
@@ -197,7 +225,7 @@ export const fr = {
         q: "Travaillez-vous avec des entreprises hors de Montréal ?",
         a: "Oui. Tout se fait à distance : nous accompagnons des PME partout au Québec et au Canada, en français ou en anglais.",
       },
-    ],
+    ] as FaqItem[],
   },
   contact: {
     eyebrow: "Contact",
@@ -271,6 +299,7 @@ export const fr = {
     payTitle: "Démarrer maintenant",
     payText:
       "Vous pouvez régler les frais de création et activer votre abonnement dès maintenant.",
+    payTextOffer: "Vous pouvez activer votre abonnement dès maintenant : les frais de création vous sont offerts.",
     payButton: "Payer et démarrer l'abonnement",
     payTestNote: "Paiement en mode test : aucune somme réelle n'est prélevée.",
     payError: "Le paiement en ligne n'est pas disponible pour le moment.",
@@ -299,67 +328,94 @@ export const fr = {
     back: "Retour à l'accueil",
   },
   legal: {
-    notice:
-      "Modèle à compléter : ce texte est un gabarit. Il doit être complété avec les informations réelles de l'entreprise et validé par un professionnel du droit avant la mise en ligne.",
+    updated: "Dernière mise à jour : 18 novembre 2026",
     back: "Retour à l'accueil",
     pages: {
       "mentions-legales": {
         title: "Mentions légales",
+        description: "Éditeur, hébergeur et coordonnées du site de Zenvyqo Digital, agence de création de sites web pour les PME.",
         sections: [
           {
             heading: "Éditeur du site",
             paragraphs: [
-              "Ce site est édité par Zenvyqo Digital.",
-              "Dénomination légale : [À COMPLÉTER]. Forme juridique : [À COMPLÉTER]. Numéro d'entreprise : [À COMPLÉTER]. Adresse du siège : [À COMPLÉTER].",
-              "Responsable de la publication : [À COMPLÉTER]. Contact : {email}, {phone}.",
+              "Ce site est édité par Zenvyqo Digital, agence de création de sites web pour les PME.",
+              // Lignes masquées tant que les informations d'immatriculation ne sont pas renseignées (src/lib/site.ts).
+              "Dénomination légale : {legalName}.",
+              "Numéro d'entreprise : {businessNumber}.",
+              "Responsable de la publication : le fondateur de Zenvyqo Digital.",
+              "Pour nous joindre : {email} ou {phone} (appel ou WhatsApp).",
             ],
           },
           {
             heading: "Hébergement",
-            paragraphs: ["Hébergeur du site : [NOM ET COORDONNÉES DE L'HÉBERGEUR À COMPLÉTER]."],
+            paragraphs: [
+              "Le site est hébergé par Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, États-Unis (netlify.com).",
+            ],
           },
           {
             heading: "Propriété intellectuelle",
             paragraphs: [
               "Les textes, visuels et éléments graphiques de ce site sont la propriété de Zenvyqo Digital, sauf mention contraire. Toute reproduction sans autorisation est interdite.",
-              "Les projets présentés dans la section « Réalisations » sont des exemples de démonstration.",
+              "Sauf mention contraire, les projets présentés dans la section « Réalisations » sont des exemples de démonstration.",
             ],
           },
         ],
       },
       confidentialite: {
         title: "Politique de confidentialité",
+        description:
+          "Comment Zenvyqo Digital recueille, utilise, conserve et protège vos renseignements personnels, conformément à la Loi 25.",
         sections: [
+          {
+            heading: "Responsable de la protection des renseignements personnels",
+            paragraphs: [
+              "Le fondateur de Zenvyqo Digital est responsable de la protection des renseignements personnels. Pour toute question ou demande, écrivez à {email} ou appelez le {phone}.",
+            ],
+          },
           {
             heading: "Renseignements recueillis",
             paragraphs: [
               "Lorsque vous remplissez un formulaire, nous recueillons : votre nom, le nom de votre entreprise, votre adresse courriel, votre numéro de téléphone, votre ville et votre province, votre secteur d'activité et la description de votre projet.",
+              "Si vous nous écrivez sur WhatsApp, nous recevons aussi votre numéro et le nom de votre profil WhatsApp. Nous ne recueillons que les renseignements nécessaires pour traiter votre demande.",
             ],
           },
           {
             heading: "Utilisation",
             paragraphs: [
               "Ces renseignements servent uniquement à répondre à votre demande, à préparer un devis et à assurer le suivi de votre projet. Ils ne sont ni vendus ni loués.",
+              "Seules les personnes de Zenvyqo Digital qui traitent votre demande y ont accès.",
             ],
           },
           {
-            heading: "Conservation et fournisseurs",
+            heading: "Fournisseurs et lieu de conservation",
             paragraphs: [
-              "Les demandes envoyées par formulaire sont enregistrées chez notre hébergeur (Netlify) et, le cas échéant, dans notre base de données (Supabase). Si vous nous écrivez sur WhatsApp, votre message est transmis par WhatsApp (Meta). Les paiements sont traités par Stripe : nous ne conservons aucun numéro de carte.",
-              "Durée de conservation : [À COMPLÉTER]. Lieu d'hébergement des données : [À COMPLÉTER].",
+              "Les demandes envoyées par formulaire sont enregistrées chez notre hébergeur, Netlify, aux États-Unis, et, le cas échéant, dans notre base de données (Supabase). Les messages WhatsApp sont transmis par WhatsApp (Meta). Si le paiement en ligne est utilisé, il est traité par Stripe : nous ne conservons aucun numéro de carte.",
+              "Notre équipe travaille à distance et peut consulter vos renseignements depuis l'extérieur du Canada. Vos renseignements peuvent donc être conservés et consultés à l'extérieur du Québec.",
             ],
+          },
+          {
+            heading: "Durée de conservation",
+            paragraphs: [
+              "Une demande qui n'aboutit pas à un contrat est supprimée au plus tard 24 mois après notre dernier échange. Les renseignements de nos clients sont conservés pendant toute la durée de l'abonnement, puis le temps exigé par nos obligations comptables et fiscales.",
+            ],
+          },
+          {
+            heading: "Témoins (cookies)",
+            paragraphs: ["Ce site n'utilise aucun témoin (cookie) de mesure d'audience, de publicité ou de profilage."],
           },
           {
             heading: "Vos droits",
             paragraphs: [
-              "Conformément aux lois applicables au Québec et au Canada, dont la Loi 25, vous pouvez demander l'accès à vos renseignements, leur rectification ou leur suppression.",
-              "Responsable de la protection des renseignements personnels : [NOM À COMPLÉTER], joignable à {email}.",
+              "Conformément aux lois applicables au Québec et au Canada, dont la Loi 25, vous pouvez demander l'accès à vos renseignements, leur rectification ou leur suppression, et retirer votre consentement. Écrivez-nous à {email} : nous vous répondons au plus tard dans les 30 jours.",
+              "Si vous estimez que vos droits ne sont pas respectés, vous pouvez aussi vous adresser à la Commission d'accès à l'information du Québec.",
             ],
           },
         ],
       },
       conditions: {
         title: "Conditions d'utilisation et d'abonnement",
+        description:
+          "Forfaits, prix, engagement, résiliation et offre de lancement des abonnements de création de sites web Zenvyqo Digital.",
         sections: [
           {
             heading: "Utilisation du site",
@@ -377,26 +433,42 @@ export const fr = {
           {
             heading: "Engagement initial de 12 mois",
             paragraphs: [
-              "Chaque forfait comporte un engagement initial de 12 mois à compter de [DATE DE DÉPART À DÉFINIR : commande ou mise en ligne].",
-              "Renouvellement après 12 mois : [À COMPLÉTER]. Résiliation anticipée et frais éventuels : [À COMPLÉTER]. Préavis : [À COMPLÉTER].",
+              "Chaque forfait comporte un engagement initial de 12 mois à compter de la mise en ligne du site.",
+            ],
+          },
+          {
+            heading: "Renouvellement et résiliation",
+            paragraphs: [
+              "Au terme de l'engagement initial, l'abonnement se poursuit de mois en mois. Il peut alors être résilié à tout moment, par écrit, avec un préavis de 30 jours.",
+              "En cas de résiliation avant la fin de l'engagement initial, les mensualités restantes jusqu'au terme de cet engagement demeurent dues.",
             ],
           },
           {
             heading: "Modifications et support inclus",
             paragraphs: [
-              "Le temps de modification ou de support inclus chaque mois dépend du forfait. Le temps non utilisé : [REPORT OU NON À COMPLÉTER]. Toute demande au-delà fait l'objet d'un devis préalable.",
+              "Le temps de modification ou de support inclus chaque mois dépend du forfait : 30 minutes avec Business Pro, 1 heure avec Business Plus et Boutique Pro. Le temps non utilisé n'est pas reporté au mois suivant. Toute demande au-delà fait l'objet d'un devis préalable.",
+            ],
+          },
+          {
+            heading: "Offre de lancement « clients fondateurs »",
+            offerOnly: true,
+            paragraphs: [
+              "Pour les {spots} premières entreprises qui souscrivent un forfait, les frais de création sont offerts et l'engagement initial est de {months} mois au lieu de 12, à compter de la mise en ligne. La mensualité reste celle du forfait choisi.",
+              "En contrepartie, le client autorise Zenvyqo Digital à présenter son site comme réalisation, sur son site web et ses réseaux sociaux. L'offre prend fin dès que les {spots} places sont attribuées.",
             ],
           },
           {
             heading: "Propriété du site et fin d'abonnement",
             paragraphs: [
               "Le client reste propriétaire de ses contenus (textes, photos, logo) et de son nom de domaine.",
-              "Sort du site à la fin de l'abonnement (transfert, rachat ou mise hors ligne) : [À COMPLÉTER].",
+              "À la fin de l'abonnement, le client peut demander le transfert de son site, moyennant des frais établis sur devis. À défaut, le site est mis hors ligne et ses contenus lui sont remis sur demande.",
             ],
           },
           {
             heading: "Droit applicable",
-            paragraphs: ["Droit applicable et tribunaux compétents : [À COMPLÉTER]."],
+            paragraphs: [
+              "Les présentes conditions sont régies par les lois applicables au Québec. Tout différend relève des tribunaux du district judiciaire de Montréal.",
+            ],
           },
         ],
       },

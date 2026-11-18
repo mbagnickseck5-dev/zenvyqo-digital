@@ -3,7 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { LEGAL_SLUGS, LOCALES, getDictionary, isLocale, type LegalSlug } from "@/lib/i18n";
-import { fillContact } from "@/lib/site";
+import type { LegalPage as LegalPageContent } from "@/lib/i18n/fr";
+import { FOUNDERS_OFFER, offerText } from "@/lib/plans";
+import { socialMetadata } from "@/lib/seo";
+import { fillContact, site } from "@/lib/site";
 
 interface Params {
   params: Promise<{ locale: string; slug: string }>;
@@ -22,9 +25,20 @@ function isLegalSlug(slug: string): slug is LegalSlug {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale, slug } = await params;
   if (!isLocale(locale) || !isLegalSlug(slug)) return {};
+  const page = getDictionary(locale).legal.pages[slug];
+  const path = `/${locale}/legal/${slug}`;
   return {
-    title: getDictionary(locale).legal.pages[slug].title,
-    alternates: { canonical: `/${locale}/legal/${slug}` },
+    title: page.title,
+    description: page.description,
+    alternates: {
+      canonical: path,
+      languages: {
+        "fr-CA": `/fr/legal/${slug}`,
+        "en-CA": `/en/legal/${slug}`,
+        "x-default": `/fr/legal/${slug}`,
+      },
+    },
+    ...socialMetadata(locale, { title: `${page.title} | ${site.name}`, description: page.description, path }),
   };
 }
 
@@ -32,7 +46,9 @@ export default async function LegalPage({ params }: Params) {
   const { locale, slug } = await params;
   if (!isLocale(locale) || !isLegalSlug(slug)) notFound();
   const t = getDictionary(locale).legal;
-  const page = t.pages[slug];
+  const page: LegalPageContent = t.pages[slug];
+  // Les sections propres à l'offre de lancement disparaissent quand l'offre est retirée.
+  const sections = page.sections.filter((s) => !s.offerOnly || FOUNDERS_OFFER.active);
 
   return (
     <article className="mx-auto w-full max-w-3xl px-5 py-14 sm:px-8 sm:py-20">
@@ -41,17 +57,18 @@ export default async function LegalPage({ params }: Params) {
         {t.back}
       </Link>
       <h1 className="mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{page.title}</h1>
-      <p role="note" className="mt-6 rounded-xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
-        {t.notice}
-      </p>
-      {page.sections.map((section) => (
+      <p className="mt-3 text-sm text-muted">{t.updated}</p>
+      {sections.map((section) => (
         <section key={section.heading} className="mt-10">
           <h2 className="font-display text-xl font-bold">{section.heading}</h2>
-          {section.paragraphs.map((p) => (
-            <p key={p} className="mt-3 leading-relaxed text-muted">
-              {fillContact(p)}
-            </p>
-          ))}
+          {section.paragraphs.map((raw) => {
+            const text = fillContact(offerText(raw));
+            return text ? (
+              <p key={raw} className="mt-3 leading-relaxed text-muted">
+                {text}
+              </p>
+            ) : null;
+          })}
         </section>
       ))}
     </article>

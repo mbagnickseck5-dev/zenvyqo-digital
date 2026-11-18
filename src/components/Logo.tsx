@@ -10,9 +10,12 @@ export function Logo({ className = "" }: { className?: string }) {
         </defs>
         <path d="M6 5h23L14 24h15l-3 5H4l15-19H9z" fill="url(#zq)" />
       </svg>
-      <span className="flex flex-col leading-none">
-        <span className="font-display text-lg font-extrabold tracking-[0.08em]">ZENVYQO</span>
-        <span className="mt-1 text-[0.62rem] font-semibold tracking-[0.42em] text-cyan">DIGITAL</span>
+      {/* Texte en casse normale, mis en capitales par CSS : les lecteurs d'écran lisent « Zenvyqo Digital ». */}
+      <span className="flex flex-col uppercase leading-none">
+        <span className="font-display text-lg font-extrabold tracking-[0.08em]">Zenvyqo</span>
+        <span className="mt-1 text-[0.62rem] font-semibold tracking-[0.42em] text-cyan">
+          <span className="sr-only"> </span>Digital
+        </span>
       </span>
     </span>
   );

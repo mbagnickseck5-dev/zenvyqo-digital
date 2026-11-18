@@ -1,11 +1,10 @@
 "use client";
 
-import { MotionConfig } from "framer-motion";
 import { X } from "lucide-react";
 import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from "react";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import type { PlanId } from "@/lib/plans";
-import { LeadForm } from "./LeadForm";
+import { LazyLeadForm } from "./LazyLeadForm";
 
 interface QuoteContextValue {
   /** Ouvre le formulaire de devis. Le forfait passé est présélectionné. */
@@ -43,8 +42,7 @@ export function QuoteProvider({
   const value = useMemo(() => ({ open }), [open]);
 
   return (
-    <MotionConfig reducedMotion="user">
-      <QuoteContext.Provider value={value}>
+    <QuoteContext.Provider value={value}>
         {children}
         <dialog
           ref={dialogRef}
@@ -73,11 +71,10 @@ export function QuoteProvider({
               </button>
             </div>
             {session && (
-              <LeadForm key={session.key} variant="plan" locale={locale} t={t} initialPlan={session.plan} onClose={close} />
+              <LazyLeadForm key={session.key} variant="plan" locale={locale} t={t} initialPlan={session.plan} onClose={close} />
             )}
           </div>
         </dialog>
-      </QuoteContext.Provider>
-    </MotionConfig>
+    </QuoteContext.Provider>
   );
 }

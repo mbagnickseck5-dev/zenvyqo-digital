@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useId, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { CircleCheck, LoaderCircle } from "lucide-react";
 import type { Dictionary, Locale } from "@/lib/i18n";
-import { PLANS, getPlan, type PlanId } from "@/lib/plans";
+import { FOUNDERS_OFFER, PLANS, getPlan, type PlanId } from "@/lib/plans";
 import { PROVINCES } from "@/lib/provinces";
 import { site } from "@/lib/site";
 import { btn } from "@/lib/ui";
@@ -170,7 +170,7 @@ export function LeadForm({
         {chosen && site.stripeEnabled && (
           <div className="mt-2 w-full rounded-xl border border-line bg-mist p-5">
             <h4 className="font-display text-lg font-bold">{t.payTitle}</h4>
-            <p className="mt-1 text-sm text-muted">{t.payText}</p>
+            <p className="mt-1 text-sm text-muted">{FOUNDERS_OFFER.active ? t.payTextOffer : t.payText}</p>
             <button type="button" className={`${btn.primary} mt-4`} onClick={onPay} disabled={payState === "loading"}>
               {payState === "loading" && <LoaderCircle className="size-5 animate-spin" aria-hidden="true" />}
               {t.payButton}

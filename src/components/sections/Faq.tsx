@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import type { Dictionary } from "@/lib/i18n";
+import { FOUNDERS_OFFER, offerText } from "@/lib/plans";
 import { Reveal } from "../Reveal";
 import { container, eyebrow, h2 } from "@/lib/ui";
 
@@ -23,7 +24,15 @@ export function Faq({ t }: Props) {
                 {item.q}
                 <ChevronDown className="size-5 shrink-0 text-electric transition-transform duration-200 group-open:rotate-180" aria-hidden="true" />
               </summary>
-              <p className="px-5 pb-5 leading-relaxed text-muted">{item.a}</p>
+              <p className="px-5 pb-5 leading-relaxed text-muted">
+                {item.a}
+                {FOUNDERS_OFFER.active && item.offerNote && (
+                  <>
+                    {" "}
+                    <strong className="font-semibold text-night">{offerText(item.offerNote)}</strong>
+                  </>
+                )}
+              </p>
             </details>
           ))}
         </div>

@@ -25,6 +25,14 @@ export const site = {
   /** Format d'affichage : (514) 552-5923 */
   phoneDisplay: formatPhone(phone),
   stripeEnabled: process.env.NEXT_PUBLIC_STRIPE_ENABLED === "true",
+  /**
+   * Immatriculation (mentions légales). Vide tant que l'entreprise n'est pas
+   * immatriculée : la ligne correspondante n'est alors pas affichée.
+   * Exemple : NEXT_PUBLIC_LEGAL_NAME="Zenvyqo Digital inc." et
+   * NEXT_PUBLIC_BUSINESS_NUMBER="NEQ 1234567890".
+   */
+  legalName: process.env.NEXT_PUBLIC_LEGAL_NAME || "",
+  businessNumber: process.env.NEXT_PUBLIC_BUSINESS_NUMBER || "",
 };
 
 export function whatsappUrl(message?: string): string | null {
@@ -33,7 +41,17 @@ export function whatsappUrl(message?: string): string | null {
   return `https://wa.me/${site.whatsapp}${q}`;
 }
 
-/** Remplace {email} et {phone} dans les textes (pages légales). */
-export function fillContact(text: string): string {
-  return text.replaceAll("{email}", site.email).replaceAll("{phone}", site.phoneDisplay);
+/**
+ * Prépare un paragraphe des pages légales : remplace {email}, {phone},
+ * {legalName} et {businessNumber}. Renvoie null si le paragraphe dépend
+ * d'une information d'immatriculation encore absente (il est alors masqué).
+ */
+export function fillContact(text: string): string | null {
+  if (text.includes("{legalName}") && !site.legalName) return null;
+  if (text.includes("{businessNumber}") && !site.businessNumber) return null;
+  return text
+    .replaceAll("{email}", site.email)
+    .replaceAll("{phone}", site.phoneDisplay)
+    .replaceAll("{legalName}", site.legalName)
+    .replaceAll("{businessNumber}", site.businessNumber);
 }

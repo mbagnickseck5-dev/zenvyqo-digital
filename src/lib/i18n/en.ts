@@ -2,11 +2,21 @@ import type { Dictionary } from "./fr";
 
 export const en: Dictionary = {
   meta: {
-    title: "Zenvyqo Digital | Websites for small businesses in Montréal and across Canada",
+    title: "Montréal Website Design for Small Businesses | Zenvyqo Digital",
     description:
-      "Business websites, online stores and local SEO for small businesses in Montréal, Québec and Canada. Monthly plans from $69 CAD.",
+      "Website design for small businesses in Montréal, Québec and across Canada: business sites, online stores, local SEO. From $69 CAD/month. Free quote.",
+    ogAlt: "Zenvyqo Digital: website design for small businesses in Montréal, Québec and Canada, from $69 CAD per month",
   },
   slogan: "Your growth starts online.",
+  offer: {
+    bar: "Launch offer: free setup and a {months}-month commitment for our first {spots} clients.",
+    barCta: "Claim it",
+    title: "Founding clients offer",
+    text: "For our first {spots} clients: no setup fee and a {months}-month commitment instead of 12. In return, you allow us to feature your site in our portfolio.",
+    termsLink: "Offer terms",
+    setupWaived: "Setup fee waived",
+    setupInstead: "instead of ${amount}\u00a0CAD",
+  },
   nav: {
     home: "Home",
     services: "Services",
@@ -79,8 +89,9 @@ export const en: Dictionary = {
     setupSuffix: "$ CAD setup fee",
     popular: "Most popular",
     choose: "Choose this plan",
-    chooseAria: "Choose the plan",
     commitment: "Prices in Canadian dollars, before taxes. Initial 12-month commitment.",
+    commitmentOffer:
+      "Prices in Canadian dollars, before taxes. Initial 12-month commitment, or {months} months with the founding clients offer.",
     termsLink: "Read the subscription terms",
     plans: {
       "business-pro": {
@@ -172,6 +183,8 @@ export const en: Dictionary = {
       {
         q: "How do payments work?",
         a: "You pay the setup fee when the project starts, then a fixed monthly rate. Prices are in Canadian dollars, before taxes, with an initial 12-month commitment. Payment is made securely by card.",
+        offerNote:
+          "Launch offer: our first {spots} clients pay no setup fee and commit for only {months} months.",
       },
       {
         q: "Can I request changes after launch?",
@@ -257,6 +270,7 @@ export const en: Dictionary = {
     no: "no",
     payTitle: "Start now",
     payText: "You can pay the setup fee and activate your subscription right away.",
+    payTextOffer: "You can activate your subscription right away: your setup fee is waived.",
     payButton: "Pay and start the subscription",
     payTestNote: "Payment in test mode: no real money is charged.",
     payError: "Online payment isn't available right now.",
@@ -285,67 +299,93 @@ export const en: Dictionary = {
     back: "Back to home",
   },
   legal: {
-    notice:
-      "Template to complete: this text is a draft. It must be completed with the company's real information and reviewed by a legal professional before going live.",
+    updated: "Last updated: November 18, 2026",
     back: "Back to home",
     pages: {
       "mentions-legales": {
         title: "Legal notice",
+        description: "Publisher, host and contact details for the website of Zenvyqo Digital, a web design agency for small businesses.",
         sections: [
           {
             heading: "Site publisher",
             paragraphs: [
-              "This site is published by Zenvyqo Digital.",
-              "Legal name: [TO COMPLETE]. Legal form: [TO COMPLETE]. Business number: [TO COMPLETE]. Registered address: [TO COMPLETE].",
-              "Publication manager: [TO COMPLETE]. Contact: {email}, {phone}.",
+              "This site is published by Zenvyqo Digital, a web design agency for small businesses.",
+              "Legal name: {legalName}.",
+              "Business number: {businessNumber}.",
+              "Publication manager: the founder of Zenvyqo Digital.",
+              "To reach us: {email} or {phone} (call or WhatsApp).",
             ],
           },
           {
             heading: "Hosting",
-            paragraphs: ["Site host: [HOST NAME AND CONTACT DETAILS TO COMPLETE]."],
+            paragraphs: [
+              "The site is hosted by Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, United States (netlify.com).",
+            ],
           },
           {
             heading: "Intellectual property",
             paragraphs: [
               "The text, visuals and graphic elements on this site belong to Zenvyqo Digital unless stated otherwise. Reproduction without permission is prohibited.",
-              "The projects shown in the “Work” section are demonstration examples.",
+              "Unless stated otherwise, the projects shown in the “Work” section are demonstration examples.",
             ],
           },
         ],
       },
       confidentialite: {
         title: "Privacy policy",
+        description:
+          "How Zenvyqo Digital collects, uses, keeps and protects your personal information, in accordance with Québec's Law 25.",
         sections: [
+          {
+            heading: "Person responsible for the protection of personal information",
+            paragraphs: [
+              "The founder of Zenvyqo Digital is responsible for the protection of personal information. For any question or request, write to {email} or call {phone}.",
+            ],
+          },
           {
             heading: "Information collected",
             paragraphs: [
               "When you fill in a form, we collect: your name, your business name, your email address, your phone number, your city and province, your industry and your project description.",
+              "If you write to us on WhatsApp, we also receive your number and your WhatsApp profile name. We only collect the information needed to handle your request.",
             ],
           },
           {
             heading: "Use",
             paragraphs: [
               "This information is used only to answer your request, prepare a quote and follow up on your project. It is never sold or rented.",
+              "Only the people at Zenvyqo Digital who handle your request have access to it.",
             ],
           },
           {
-            heading: "Retention and providers",
+            heading: "Providers and where data is kept",
             paragraphs: [
-              "Requests sent through our forms are stored with our host (Netlify) and, where applicable, in our database (Supabase). If you write to us on WhatsApp, your message is carried by WhatsApp (Meta). Payments are processed by Stripe: we never store card numbers.",
-              "Retention period: [TO COMPLETE]. Data hosting location: [TO COMPLETE].",
+              "Requests sent through our forms are stored with our host, Netlify, in the United States, and, where applicable, in our database (Supabase). WhatsApp messages are carried by WhatsApp (Meta). If online payment is used, it is processed by Stripe: we never store card numbers.",
+              "Our team works remotely and may access your information from outside Canada. Your information may therefore be stored and accessed outside Québec.",
             ],
+          },
+          {
+            heading: "Retention period",
+            paragraphs: [
+              "A request that does not lead to a contract is deleted no later than 24 months after our last exchange. Client information is kept for the whole subscription, then for as long as our accounting and tax obligations require.",
+            ],
+          },
+          {
+            heading: "Cookies",
+            paragraphs: ["This site uses no audience measurement, advertising or profiling cookies."],
           },
           {
             heading: "Your rights",
             paragraphs: [
-              "Under the laws applicable in Québec and Canada, including Law 25, you may ask to access, correct or delete your information.",
-              "Person responsible for the protection of personal information: [NAME TO COMPLETE], reachable at {email}.",
+              "Under the laws applicable in Québec and Canada, including Law 25, you may ask to access, correct or delete your information, and withdraw your consent. Write to us at {email}: we reply within 30 days at the latest.",
+              "If you believe your rights are not being respected, you may also contact the Commission d'accès à l'information du Québec.",
             ],
           },
         ],
       },
       conditions: {
         title: "Terms of use and subscription",
+        description:
+          "Plans, prices, commitment, cancellation and launch offer for Zenvyqo Digital website subscriptions.",
         sections: [
           {
             heading: "Use of the site",
@@ -362,27 +402,41 @@ export const en: Dictionary = {
           },
           {
             heading: "Initial 12-month commitment",
+            paragraphs: ["Each plan carries an initial 12-month commitment starting from the day the site goes live."],
+          },
+          {
+            heading: "Renewal and cancellation",
             paragraphs: [
-              "Each plan carries an initial 12-month commitment starting from [START DATE TO DEFINE: order or launch].",
-              "Renewal after 12 months: [TO COMPLETE]. Early termination and any fees: [TO COMPLETE]. Notice period: [TO COMPLETE].",
+              "After the initial commitment, the subscription continues month to month. It can then be cancelled at any time, in writing, with 30 days' notice.",
+              "If the subscription is cancelled before the end of the initial commitment, the remaining monthly payments up to the end of that commitment are still due.",
             ],
           },
           {
             heading: "Included changes and support",
             paragraphs: [
-              "The change or support time included each month depends on the plan. Unused time: [CARRY-OVER OR NOT, TO COMPLETE]. Any request beyond it is quoted in advance.",
+              "The change or support time included each month depends on the plan: 30 minutes with Business Pro, 1 hour with Business Plus and Boutique Pro. Unused time does not carry over to the next month. Any request beyond it is quoted in advance.",
+            ],
+          },
+          {
+            heading: "“Founding clients” launch offer",
+            offerOnly: true,
+            paragraphs: [
+              "For the first {spots} businesses that subscribe to a plan, the setup fee is waived and the initial commitment is {months} months instead of 12, starting from the day the site goes live. The monthly rate stays that of the chosen plan.",
+              "In return, the client allows Zenvyqo Digital to feature their site as a project on its website and social media. The offer ends as soon as the {spots} spots are taken.",
             ],
           },
           {
             heading: "Site ownership and end of subscription",
             paragraphs: [
               "The client remains the owner of their content (copy, photos, logo) and domain name.",
-              "What happens to the site at the end of the subscription (transfer, buyout or taking offline): [TO COMPLETE].",
+              "At the end of the subscription, the client may ask for their site to be transferred, for a fee quoted in advance. Otherwise, the site is taken offline and its content is handed over on request.",
             ],
           },
           {
             heading: "Governing law",
-            paragraphs: ["Governing law and competent courts: [TO COMPLETE]."],
+            paragraphs: [
+              "These terms are governed by the laws applicable in Québec. Any dispute falls under the courts of the judicial district of Montréal.",
+            ],
           },
         ],
       },
