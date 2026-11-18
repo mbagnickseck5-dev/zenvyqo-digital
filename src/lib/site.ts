@@ -2,6 +2,8 @@
  *  les variables d'environnement publiques, si elles sont définies, ont priorité. */
 const DEFAULT_EMAIL = "contactzenvyqo@gmail.com";
 const DEFAULT_PHONE = "+15145525923";
+/** Numéro WhatsApp Business (même que le téléphone). */
+const DEFAULT_WHATSAPP = DEFAULT_PHONE;
 
 /** « +15145525923 » → « (514) 552-5923 » (numéros nord-américains) */
 function formatPhone(raw: string): string {
@@ -16,7 +18,7 @@ export const site = {
   name: "Zenvyqo Digital",
   // Netlify fournit URL au moment de la compilation : sert de repli pour le SEO (canonique, sitemap).
   url: (process.env.NEXT_PUBLIC_SITE_URL || process.env.URL || "http://localhost:3000").replace(/\/$/, ""),
-  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, ""),
+  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || DEFAULT_WHATSAPP).replace(/\D/g, ""),
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || DEFAULT_EMAIL,
   /** Format international, pour les liens tel: */
   phone,

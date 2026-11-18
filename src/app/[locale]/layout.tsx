@@ -7,6 +7,7 @@ import "../globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { QuoteProvider } from "@/components/QuoteProvider";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { HTML_LANG, LOCALES, getDictionary, isLocale } from "@/lib/i18n";
 import { site } from "@/lib/site";
 
@@ -64,6 +65,7 @@ export default async function RootLayout({ children, params }: Params & { childr
           <Header locale={locale} t={t.nav} />
           <main id="contenu">{children}</main>
           <Footer locale={locale} t={t} />
+          <WhatsAppFloat label={t.contact.whatsapp} message={t.contact.whatsappMessage} />
         </QuoteProvider>
       </body>
     </html>

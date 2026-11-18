@@ -3,6 +3,7 @@ const base =
   "inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 py-3 text-base font-semibold transition duration-200 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0";
 
 export const btn = {
+  base,
   primary: `${base} bg-electric text-white shadow-lg shadow-electric/30 hover:bg-electric-dark`,
   outlineLight: `${base} border border-white/40 text-white hover:border-white hover:bg-white/10`,
   outlineDark: `${base} border border-night/25 text-night hover:border-electric hover:text-electric`,

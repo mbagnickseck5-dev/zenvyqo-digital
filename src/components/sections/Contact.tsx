@@ -1,7 +1,8 @@
-import { Mail, MessageCircle, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { site, whatsappUrl } from "@/lib/site";
 import { LeadForm } from "../LeadForm";
+import { WhatsAppIcon } from "../WhatsAppIcon";
 import { Reveal } from "../Reveal";
 import { btn, container, eyebrow, h2 } from "@/lib/ui";
 
@@ -26,8 +27,8 @@ export function Contact({ locale, t }: Props) {
               {site.phoneDisplay}
             </a>
             {wa && (
-              <a href={wa} target="_blank" rel="noopener noreferrer" className={btn.outlineDark}>
-                <MessageCircle className="size-5" aria-hidden="true" />
+              <a href={wa} target="_blank" rel="noopener noreferrer" className={`${btn.base} bg-[#25D366] text-[#073B1F] shadow-lg shadow-[#25D366]/25 hover:bg-[#1FBE5B]`}>
+                <WhatsAppIcon className="size-5" />
                 {c.whatsapp}
               </a>
             )}

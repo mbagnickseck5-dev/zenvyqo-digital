@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import type { Dictionary, Locale } from "@/lib/i18n";
-import { site } from "@/lib/site";
+import { site, whatsappUrl } from "@/lib/site";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import { Logo } from "./Logo";
 
 export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
@@ -34,6 +35,14 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
                 {site.phoneDisplay}
               </a>
             </li>
+            {whatsappUrl() && (
+              <li>
+                <a href={whatsappUrl(t.contact.whatsappMessage) ?? undefined} target="_blank" rel="noopener noreferrer" className={`${linkClass} gap-2`}>
+                  <WhatsAppIcon className="size-4 text-[#25D366]" />
+                  WhatsApp
+                </a>
+              </li>
+            )}
             <li>
               <a href={`mailto:${site.email}`} className={`${linkClass} gap-2`}>
                 <Mail className="size-4 text-cyan" aria-hidden="true" />
