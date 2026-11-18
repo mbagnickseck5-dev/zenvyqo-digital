@@ -23,7 +23,8 @@ Sans aucune variable d'environnement, le site fonctionne en **mode démo** : le 
 ```
 src/
 ├─ app/
-│  ├─ [locale]/                 fr | en
+│  ├─ (site)/[locale]/          fr | en (site Zenvyqo)
+│  ├─ (demo)/demos/             sites de démonstration (restaurant, salon, nettoyage)
 │  │  ├─ layout.tsx             <html>, métadonnées SEO, en-tête, pied de page
 │  │  ├─ page.tsx               page d'accueil (assemble les sections)
 │  │  ├─ legal/[slug]/page.tsx  mentions légales, confidentialité, conditions
@@ -121,6 +122,15 @@ Le parcours Stripe n'a pas pu être exécuté pendant le développement (aucune 
 Réglée dans `src/lib/plans.ts` (`FOUNDERS_OFFER` : 5 places, engagement de 3 mois, frais de création offerts). Tant qu'elle est active : bandeau en haut des pages, encadré et prix barrés dans les forfaits, note dans la FAQ, section dans les conditions, et paiement Stripe sans frais de création.
 
 Pour la retirer : Netlify → Project configuration → Environment variables → `NEXT_PUBLIC_FOUNDERS_OFFER` = `false`, puis Deploys → Trigger deploy.
+
+## Sites de démonstration
+
+Trois sites complets d'entreprises fictives, ouverts depuis les cartes de la section Réalisations :
+`/demos/restaurant` (Bistro Vermeil), `/demos/salon` (Atelier Orphée) et `/demos/nettoyage` (Clarté Entretien).
+
+- Code : `src/app/(demo)/demos/…` ; gabarit à part (sans l'en-tête Zenvyqo), bandeau « Site de démonstration » et bouton vers les forfaits (`src/components/demo/`).
+- Pages non indexées par Google (`noindex`) ; numéros de téléphone fictifs (555-01xx), aucun avis ni statistique inventés.
+- Les formulaires n'envoient rien : ils expliquent qu'un vrai site enverrait la demande sur WhatsApp et par courriel.
 
 ## Visuels
 

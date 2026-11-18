@@ -178,12 +178,13 @@ export const fr = {
     eyebrow: "Réalisations",
     title: "Exemples de sites que nous concevons",
     intro:
-      "Les trois projets ci-dessous sont des démonstrations, et non des sites de clients réels. Ils montrent le type de résultat possible selon votre secteur.",
+      "Les trois projets ci-dessous sont des démonstrations, et non des sites de clients réels. Ils montrent le type de résultat possible selon votre secteur : cliquez sur un exemple pour le visiter.",
     demoBadge: "Exemple de démonstration",
+    cta: "Voir la démo",
     items: [
-      { name: "Restaurant", type: "Site vitrine avec menu et réservation", headline: "Une table vous attend", alt: "Aperçu d'un site de restaurant sur ordinateur portable et téléphone" },
-      { name: "Salon de coiffure", type: "Site vitrine avec prise de rendez-vous", headline: "Votre style, sur rendez-vous", alt: "Aperçu d'un site de salon de coiffure sur ordinateur portable et téléphone" },
-      { name: "Entreprise de nettoyage", type: "Site vitrine avec demande de devis", headline: "Des locaux impeccables", alt: "Aperçu d'un site d'entreprise de nettoyage sur ordinateur portable et téléphone" },
+      { slug: "restaurant", name: "Restaurant", type: "Site vitrine avec menu et réservation", headline: "Une table vous attend", alt: "Aperçu d'un site de restaurant sur ordinateur portable et téléphone" },
+      { slug: "salon", name: "Salon de coiffure", type: "Site vitrine avec prise de rendez-vous", headline: "Votre style, sur rendez-vous", alt: "Aperçu d'un site de salon de coiffure sur ordinateur portable et téléphone" },
+      { slug: "nettoyage", name: "Entreprise de nettoyage", type: "Site vitrine avec demande de devis", headline: "Des locaux impeccables", alt: "Aperçu d'un site d'entreprise de nettoyage sur ordinateur portable et téléphone" },
     ],
   },
   about: {

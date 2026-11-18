@@ -155,12 +155,13 @@ export const en: Dictionary = {
     eyebrow: "Work",
     title: "Examples of sites we design",
     intro:
-      "The three projects below are demonstrations, not real client sites. They show the kind of result possible for your industry.",
+      "The three projects below are demonstrations, not real client sites. They show the kind of result possible for your industry: click an example to visit it.",
     demoBadge: "Demonstration example",
+    cta: "View the demo (in French)",
     items: [
-      { name: "Restaurant", type: "Business site with menu and booking", headline: "A table is waiting", alt: "Preview of a restaurant website on a laptop and a phone" },
-      { name: "Hair salon", type: "Business site with appointment booking", headline: "Your style, by appointment", alt: "Preview of a hair salon website on a laptop and a phone" },
-      { name: "Cleaning company", type: "Business site with quote requests", headline: "Spotless spaces", alt: "Preview of a cleaning company website on a laptop and a phone" },
+      { slug: "restaurant", name: "Restaurant", type: "Business site with menu and booking", headline: "A table is waiting", alt: "Preview of a restaurant website on a laptop and a phone" },
+      { slug: "salon", name: "Hair salon", type: "Business site with appointment booking", headline: "Your style, by appointment", alt: "Preview of a hair salon website on a laptop and a phone" },
+      { slug: "nettoyage", name: "Cleaning company", type: "Business site with quote requests", headline: "Spotless spaces", alt: "Preview of a cleaning company website on a laptop and a phone" },
     ],
   },
   about: {

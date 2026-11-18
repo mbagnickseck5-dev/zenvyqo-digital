@@ -16,32 +16,36 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
-}
+/* Styles de base dans la couche « base » : les classes utilitaires (ex. une police
+   de titre propre à une démo) peuvent ainsi les remplacer. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
 
-body {
-  background: #ffffff;
-  color: var(--color-night);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    background: #ffffff;
+    color: var(--color-night);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
 
-h1, h2, h3 {
-  font-family: var(--font-display);
-  text-wrap: balance;
-}
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
 
-:focus-visible {
-  outline: 3px solid var(--color-cyan);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
+  :focus-visible {
+    outline: 3px solid var(--color-cyan);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 
-dialog::backdrop {
-  background: rgb(6 19 42 / 0.7);
-  backdrop-filter: blur(4px);
+  dialog::backdrop {
+    background: rgb(6 19 42 / 0.7);
+    backdrop-filter: blur(4px);
+  }
 }
 
 /* Animations d'entrée du héros, en CSS (aucun JavaScript nécessaire). */

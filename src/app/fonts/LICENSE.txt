@@ -1,7 +1,9 @@
 Polices web incluses dans ce dossier (sous-ensemble latin, variable) :
 - Montserrat : © The Montserrat Project Authors — SIL Open Font License 1.1
 - Inter : © The Inter Project Authors — SIL Open Font License 1.1
-Fichiers issus des paquets @fontsource-variable/montserrat et @fontsource-variable/inter.
+- Playfair Display : © The Playfair Display Project Authors — SIL Open Font License 1.1 (sites de démonstration)
+- Fraunces : © The Fraunces Project Authors — SIL Open Font License 1.1 (sites de démonstration)
+Fichiers issus des paquets @fontsource-variable (montserrat, inter, playfair-display, fraunces).
 Texte complet de la licence : https://openfontlicense.org
 
 Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter) Inter-Italic[opsz,wght].ttf: Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter)

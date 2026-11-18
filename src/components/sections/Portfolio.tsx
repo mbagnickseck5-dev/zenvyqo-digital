@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import type { Dictionary } from "@/lib/i18n";
 import { visual, type VisualName } from "@/lib/visuals";
 import { Reveal } from "../Reveal";
@@ -31,7 +32,7 @@ export function Portfolio({ t }: Props) {
             const photo = visual(theme.image);
             return (
               <Reveal key={item.name} delay={i * 0.08} className="h-full">
-                <figure className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <figure className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition duration-300 hover:-translate-y-1 hover:shadow-xl">
                   {/* Même format pour les trois aperçus : les cartes restent alignées. */}
                   <div className="relative aspect-[4/3] overflow-hidden bg-white">
                     {photo ? (
@@ -61,6 +62,15 @@ export function Portfolio({ t }: Props) {
                     <span className="inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-900">{p.demoBadge}</span>
                     <h3 className="mt-3 text-lg font-bold">{item.name}</h3>
                     <p className="mt-1 text-sm text-muted">{item.type}</p>
+                    {/* Lien étiré : toute la carte est cliquable, le nom accessible reste court. */}
+                    <a
+                      href={`/demos/${item.slug}`}
+                      aria-label={`${p.cta} : ${item.name}`}
+                      className="mt-4 inline-flex items-center gap-1.5 font-semibold text-electric-dark after:absolute after:inset-0 after:rounded-2xl after:content-[''] group-hover:underline"
+                    >
+                      {p.cta}
+                      <ArrowUpRight className="size-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+                    </a>
                   </figcaption>
                 </figure>
               </Reveal>
