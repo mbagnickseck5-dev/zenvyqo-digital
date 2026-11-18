@@ -10,7 +10,7 @@ import { Pricing } from "@/components/sections/Pricing";
 import { Process } from "@/components/sections/Process";
 import { Services } from "@/components/sections/Services";
 import { HTML_LANG, getDictionary, isLocale } from "@/lib/i18n";
-import { FOUNDERS_OFFER, PLANS, offerText } from "@/lib/plans";
+import { PLANS } from "@/lib/plans";
 import { ogImage } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -22,8 +22,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   // Données structurées : entreprise en ligne (aucune adresse physique), offres, site et FAQ.
   const url = `${site.url}/${locale}`;
   const orgId = `${site.url}/#organisation`;
-  const faqAnswer = (item: (typeof t.faq.items)[number]) =>
-    FOUNDERS_OFFER.active && item.offerNote ? `${item.a} ${offerText(item.offerNote)}` : item.a;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -83,7 +81,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         mainEntity: t.faq.items.map((item) => ({
           "@type": "Question",
           name: item.q,
-          acceptedAnswer: { "@type": "Answer", text: faqAnswer(item) },
+          acceptedAnswer: { "@type": "Answer", text: item.a },
         })),
       },
     ],

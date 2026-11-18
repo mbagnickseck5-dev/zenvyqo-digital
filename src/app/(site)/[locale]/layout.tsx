@@ -5,7 +5,7 @@ import "../../globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MotionProvider } from "@/components/MotionProvider";
-import { OfferBar } from "@/components/OfferBar";
+import { TopBar } from "@/components/TopBar";
 import { QuoteProvider } from "@/components/QuoteProvider";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { inter, montserrat } from "@/lib/fonts";
@@ -65,7 +65,7 @@ export default async function RootLayout({ children, params }: Params & { childr
         </a>
         <MotionProvider>
           <QuoteProvider locale={locale} t={t.form}>
-            <OfferBar locale={locale} t={t.offer} />
+            <TopBar locale={locale} t={t.topBar} />
             <Header locale={locale} t={t.nav} />
             <main id="contenu">{children}</main>
             <Footer locale={locale} t={t} />

@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { LEGAL_SLUGS, LOCALES, getDictionary, isLocale, type LegalSlug } from "@/lib/i18n";
 import type { LegalPage as LegalPageContent } from "@/lib/i18n/fr";
-import { FOUNDERS_OFFER, offerText } from "@/lib/plans";
 import { socialMetadata } from "@/lib/seo";
 import { fillContact, site } from "@/lib/site";
 
@@ -47,8 +46,6 @@ export default async function LegalPage({ params }: Params) {
   if (!isLocale(locale) || !isLegalSlug(slug)) notFound();
   const t = getDictionary(locale).legal;
   const page: LegalPageContent = t.pages[slug];
-  // Les sections propres à l'offre de lancement disparaissent quand l'offre est retirée.
-  const sections = page.sections.filter((s) => !s.offerOnly || FOUNDERS_OFFER.active);
 
   return (
     <article className="mx-auto w-full max-w-3xl px-5 py-14 sm:px-8 sm:py-20">
@@ -58,11 +55,11 @@ export default async function LegalPage({ params }: Params) {
       </Link>
       <h1 className="mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{page.title}</h1>
       <p className="mt-3 text-sm text-muted">{t.updated}</p>
-      {sections.map((section) => (
+      {page.sections.map((section) => (
         <section key={section.heading} className="mt-10">
           <h2 className="font-display text-xl font-bold">{section.heading}</h2>
           {section.paragraphs.map((raw) => {
-            const text = fillContact(offerText(raw));
+            const text = fillContact(raw);
             return text ? (
               <p key={raw} className="mt-3 leading-relaxed text-muted">
                 {text}

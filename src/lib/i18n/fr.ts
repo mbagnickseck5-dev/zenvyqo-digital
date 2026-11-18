@@ -7,35 +7,26 @@ export interface LegalPage {
   sections: {
     heading: string;
     paragraphs: string[];
-    /** Section affichée seulement pendant l'offre « clients fondateurs » */
-    offerOnly?: boolean;
   }[];
 }
 
 export interface FaqItem {
   q: string;
   a: string;
-  /** Phrase ajoutée à la réponse pendant l'offre « clients fondateurs » */
-  offerNote?: string;
 }
 
 export const fr = {
   meta: {
     title: "Création de site web à Montréal pour PME | Zenvyqo Digital",
     description:
-      "Conception de sites web pour les PME de Montréal, du Québec et du Canada : site vitrine, boutique en ligne, SEO local. Dès 69 $ CA/mois. Devis gratuit.",
+      "Conception de sites web pour les PME de Montréal, du Québec et du Canada : site vitrine, boutique en ligne, SEO local. Dès 69 $ CA/mois, sans engagement.",
     ogAlt: "Zenvyqo Digital : création de sites web pour les PME de Montréal, du Québec et du Canada, dès 69 $ CA par mois",
   },
   slogan: "Votre croissance commence en ligne.",
-  // Les jetons {spots} et {months} viennent de FOUNDERS_OFFER (src/lib/plans.ts).
-  offer: {
-    bar: "Offre de lancement : création offerte et engagement de {months} mois pour nos {spots} premiers clients.",
-    barCta: "En profiter",
-    title: "Offre clients fondateurs",
-    text: "Pour nos {spots} premiers clients : frais de création offerts et engagement de {months} mois au lieu de 12. En échange, vous nous autorisez à présenter votre site dans nos réalisations.",
-    termsLink: "Conditions de l'offre",
-    setupWaived: "Frais de création offerts",
-    setupInstead: "au lieu de {amount}\u00a0$\u00a0CA",
+  // {price} : mensualité la plus basse (MIN_MONTHLY, src/lib/plans.ts)
+  topBar: {
+    text: "Sites web dès {price}\u00a0$\u00a0CA par mois, sans engagement.",
+    cta: "Voir les forfaits",
   },
   nav: {
     home: "Accueil",
@@ -112,9 +103,7 @@ export const fr = {
     popular: "Le plus populaire",
     choose: "Choisir ce forfait",
     commitment:
-      "Prix en dollars canadiens, avant taxes. Engagement initial de 12 mois.",
-    commitmentOffer:
-      "Prix en dollars canadiens, avant taxes. Engagement initial de 12 mois, ou de {months} mois avec l'offre clients fondateurs.",
+      "Prix en dollars canadiens, avant taxes. Sans engagement : résiliable en tout temps avec un préavis de 30 jours.",
     termsLink: "Lire les conditions d'abonnement",
     plans: {
       "business-pro": {
@@ -192,11 +181,11 @@ export const fr = {
     title: "Une agence web au service des PME",
     paragraphs: [
       "Zenvyqo Digital conçoit des sites internet pour les petites et moyennes entreprises canadiennes, avec une attention particulière pour Montréal et le Québec.",
-      "Nous travaillons entièrement en ligne, en français comme en anglais. Notre formule par abonnement vous évite un gros investissement de départ : des frais de création réduits, puis une mensualité qui couvre l'hébergement, l'entretien et vos modifications courantes.",
+      "Nous travaillons entièrement en ligne, en français comme en anglais. Notre formule par abonnement vous évite un gros investissement de départ : des frais de création réduits, puis une mensualité sans engagement qui couvre l'hébergement, l'entretien et vos modifications courantes.",
     ],
     points: [
       "Le français d'abord, l'anglais en option",
-      "Des prix affichés, sans surprise",
+      "Des prix affichés, sans engagement",
       "Un site entretenu chaque mois",
     ],
   },
@@ -210,9 +199,7 @@ export const fr = {
       },
       {
         q: "Comment se passent les paiements ?",
-        a: "Vous réglez les frais de création au lancement du projet, puis une mensualité fixe. Les prix sont en dollars canadiens, avant taxes, avec un engagement initial de 12 mois. Le paiement se fait par carte, de façon sécurisée.",
-        offerNote:
-          "Offre de lancement : nos {spots} premiers clients ne paient pas de frais de création et s'engagent pour {months} mois seulement.",
+        a: "Vous réglez les frais de création au lancement du projet, puis une mensualité fixe, sans engagement : vous pouvez arrêter en tout temps avec un préavis de 30 jours. Les prix sont en dollars canadiens, avant taxes. Le paiement se fait par carte, de façon sécurisée.",
       },
       {
         q: "Puis-je demander des modifications après la mise en ligne ?",
@@ -220,7 +207,7 @@ export const fr = {
       },
       {
         q: "À qui appartient le site ?",
-        a: "Vos contenus (textes, photos, logo) et votre nom de domaine restent les vôtres. Pendant l'abonnement, nous hébergeons et entretenons le site. Les modalités à la fin de l'engagement sont détaillées dans les conditions d'abonnement.",
+        a: "Vos contenus (textes, photos, logo) et votre nom de domaine restent les vôtres. Pendant l'abonnement, nous hébergeons et entretenons le site. Les modalités à la fin de l'abonnement sont détaillées dans les conditions d'abonnement.",
       },
       {
         q: "Travaillez-vous avec des entreprises hors de Montréal ?",
@@ -300,7 +287,6 @@ export const fr = {
     payTitle: "Démarrer maintenant",
     payText:
       "Vous pouvez régler les frais de création et activer votre abonnement dès maintenant.",
-    payTextOffer: "Vous pouvez activer votre abonnement dès maintenant : les frais de création vous sont offerts.",
     payButton: "Payer et démarrer l'abonnement",
     payTestNote: "Paiement en mode test : aucune somme réelle n'est prélevée.",
     payError: "Le paiement en ligne n'est pas disponible pour le moment.",
@@ -416,7 +402,7 @@ export const fr = {
       conditions: {
         title: "Conditions d'utilisation et d'abonnement",
         description:
-          "Forfaits, prix, engagement, résiliation et offre de lancement des abonnements de création de sites web Zenvyqo Digital.",
+          "Forfaits, prix, résiliation et propriété du site pour les abonnements de création de sites web Zenvyqo Digital, sans engagement.",
         sections: [
           {
             heading: "Utilisation du site",
@@ -432,30 +418,22 @@ export const fr = {
             ],
           },
           {
-            heading: "Engagement initial de 12 mois",
+            heading: "Sans engagement",
             paragraphs: [
-              "Chaque forfait comporte un engagement initial de 12 mois à compter de la mise en ligne du site.",
+              "Les forfaits sont sans engagement de durée. L'abonnement mensuel commence à la mise en ligne du site.",
+              "Vous pouvez résilier en tout temps, par écrit, avec un préavis de 30 jours.",
             ],
           },
           {
-            heading: "Renouvellement et résiliation",
+            heading: "Frais de création",
             paragraphs: [
-              "Au terme de l'engagement initial, l'abonnement se poursuit de mois en mois. Il peut alors être résilié à tout moment, par écrit, avec un préavis de 30 jours.",
-              "En cas de résiliation avant la fin de l'engagement initial, les mensualités restantes jusqu'au terme de cet engagement demeurent dues.",
+              "Les frais de création couvrent la conception et la mise en ligne du site. Ils sont payables au lancement du projet et ne sont pas remboursables une fois le projet commencé.",
             ],
           },
           {
             heading: "Modifications et support inclus",
             paragraphs: [
               "Le temps de modification ou de support inclus chaque mois dépend du forfait : 30 minutes avec Business Pro, 1 heure avec Business Plus et Boutique Pro. Le temps non utilisé n'est pas reporté au mois suivant. Toute demande au-delà fait l'objet d'un devis préalable.",
-            ],
-          },
-          {
-            heading: "Offre de lancement « clients fondateurs »",
-            offerOnly: true,
-            paragraphs: [
-              "Pour les {spots} premières entreprises qui souscrivent un forfait, les frais de création sont offerts et l'engagement initial est de {months} mois au lieu de 12, à compter de la mise en ligne. La mensualité reste celle du forfait choisi.",
-              "En contrepartie, le client autorise Zenvyqo Digital à présenter son site comme réalisation, sur son site web et ses réseaux sociaux. L'offre prend fin dès que les {spots} places sont attribuées.",
             ],
           },
           {

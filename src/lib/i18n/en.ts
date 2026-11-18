@@ -4,18 +4,13 @@ export const en: Dictionary = {
   meta: {
     title: "Montréal Website Design for Small Businesses | Zenvyqo Digital",
     description:
-      "Website design for small businesses in Montréal, Québec and across Canada: business sites, online stores, local SEO. From $69 CAD/month. Free quote.",
+      "Website design for small businesses in Montréal, Québec and across Canada: business sites, online stores, local SEO. From $69 CAD/month, no commitment.",
     ogAlt: "Zenvyqo Digital: website design for small businesses in Montréal, Québec and Canada, from $69 CAD per month",
   },
   slogan: "Your growth starts online.",
-  offer: {
-    bar: "Launch offer: free setup and a {months}-month commitment for our first {spots} clients.",
-    barCta: "Claim it",
-    title: "Founding clients offer",
-    text: "For our first {spots} clients: no setup fee and a {months}-month commitment instead of 12. In return, you allow us to feature your site in our portfolio.",
-    termsLink: "Offer terms",
-    setupWaived: "Setup fee waived",
-    setupInstead: "instead of ${amount}\u00a0CAD",
+  topBar: {
+    text: "Websites from ${price}\u00a0CAD a month, no commitment.",
+    cta: "See the plans",
   },
   nav: {
     home: "Home",
@@ -89,9 +84,7 @@ export const en: Dictionary = {
     setupSuffix: "$ CAD setup fee",
     popular: "Most popular",
     choose: "Choose this plan",
-    commitment: "Prices in Canadian dollars, before taxes. Initial 12-month commitment.",
-    commitmentOffer:
-      "Prices in Canadian dollars, before taxes. Initial 12-month commitment, or {months} months with the founding clients offer.",
+    commitment: "Prices in Canadian dollars, before taxes. No commitment: cancel anytime with 30 days' notice.",
     termsLink: "Read the subscription terms",
     plans: {
       "business-pro": {
@@ -169,9 +162,9 @@ export const en: Dictionary = {
     title: "A web agency built for small businesses",
     paragraphs: [
       "Zenvyqo Digital designs websites for Canadian small and medium businesses, with a particular focus on Montréal and Québec.",
-      "We work entirely online, in French and in English. Our subscription model avoids a large upfront investment: a small setup fee, then a monthly rate that covers hosting, maintenance and your routine changes.",
+      "We work entirely online, in French and in English. Our subscription model avoids a large upfront investment: a small setup fee, then a no-commitment monthly rate that covers hosting, maintenance and your routine changes.",
     ],
-    points: ["French first, English as an option", "Posted prices, no surprises", "A site maintained every month"],
+    points: ["French first, English as an option", "Posted prices, no commitment", "A site maintained every month"],
   },
   faq: {
     eyebrow: "FAQ",
@@ -183,9 +176,7 @@ export const en: Dictionary = {
       },
       {
         q: "How do payments work?",
-        a: "You pay the setup fee when the project starts, then a fixed monthly rate. Prices are in Canadian dollars, before taxes, with an initial 12-month commitment. Payment is made securely by card.",
-        offerNote:
-          "Launch offer: our first {spots} clients pay no setup fee and commit for only {months} months.",
+        a: "You pay the setup fee when the project starts, then a fixed monthly rate with no commitment: you can stop anytime with 30 days' notice. Prices are in Canadian dollars, before taxes. Payment is made securely by card.",
       },
       {
         q: "Can I request changes after launch?",
@@ -193,7 +184,7 @@ export const en: Dictionary = {
       },
       {
         q: "Who owns the site?",
-        a: "Your content (copy, photos, logo) and your domain name remain yours. During the subscription, we host and maintain the site. What happens at the end of the commitment is set out in the subscription terms.",
+        a: "Your content (copy, photos, logo) and your domain name remain yours. During the subscription, we host and maintain the site. What happens at the end of the subscription is set out in the subscription terms.",
       },
       {
         q: "Do you work with businesses outside Montréal?",
@@ -271,7 +262,6 @@ export const en: Dictionary = {
     no: "no",
     payTitle: "Start now",
     payText: "You can pay the setup fee and activate your subscription right away.",
-    payTextOffer: "You can activate your subscription right away: your setup fee is waived.",
     payButton: "Pay and start the subscription",
     payTestNote: "Payment in test mode: no real money is charged.",
     payError: "Online payment isn't available right now.",
@@ -386,7 +376,7 @@ export const en: Dictionary = {
       conditions: {
         title: "Terms of use and subscription",
         description:
-          "Plans, prices, commitment, cancellation and launch offer for Zenvyqo Digital website subscriptions.",
+          "Plans, prices, cancellation and site ownership for Zenvyqo Digital website subscriptions, with no commitment.",
         sections: [
           {
             heading: "Use of the site",
@@ -402,28 +392,22 @@ export const en: Dictionary = {
             ],
           },
           {
-            heading: "Initial 12-month commitment",
-            paragraphs: ["Each plan carries an initial 12-month commitment starting from the day the site goes live."],
+            heading: "No commitment",
+            paragraphs: [
+              "Plans have no minimum term. The monthly subscription starts when the site goes live.",
+              "You can cancel anytime, in writing, with 30 days' notice.",
+            ],
           },
           {
-            heading: "Renewal and cancellation",
+            heading: "Setup fee",
             paragraphs: [
-              "After the initial commitment, the subscription continues month to month. It can then be cancelled at any time, in writing, with 30 days' notice.",
-              "If the subscription is cancelled before the end of the initial commitment, the remaining monthly payments up to the end of that commitment are still due.",
+              "The setup fee covers designing and launching the site. It is payable when the project starts and is non-refundable once work has begun.",
             ],
           },
           {
             heading: "Included changes and support",
             paragraphs: [
               "The change or support time included each month depends on the plan: 30 minutes with Business Pro, 1 hour with Business Plus and Boutique Pro. Unused time does not carry over to the next month. Any request beyond it is quoted in advance.",
-            ],
-          },
-          {
-            heading: "“Founding clients” launch offer",
-            offerOnly: true,
-            paragraphs: [
-              "For the first {spots} businesses that subscribe to a plan, the setup fee is waived and the initial commitment is {months} months instead of 12, starting from the day the site goes live. The monthly rate stays that of the chosen plan.",
-              "In return, the client allows Zenvyqo Digital to feature their site as a project on its website and social media. The offer ends as soon as the {spots} spots are taken.",
             ],
           },
           {

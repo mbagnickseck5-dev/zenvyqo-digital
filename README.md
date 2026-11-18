@@ -40,12 +40,12 @@ src/
 ├─ components/
 │  ├─ sections/                 Hero, Advantages, Services, Pricing, Process,
 │  │                            Portfolio, About, Faq, Contact, CtaBand
-│  ├─ Header.tsx · Footer.tsx · Logo.tsx · HeroVisual.tsx · OfferBar.tsx
+│  ├─ Header.tsx · Footer.tsx · Logo.tsx · HeroVisual.tsx · TopBar.tsx
 │  ├─ QuoteProvider.tsx         fenêtre de devis, ouverte depuis n'importe quel bouton
 │  ├─ LazyLeadForm.tsx          charge le formulaire à la demande (allège la page)
 │  ├─ QuoteButton.tsx · LeadForm.tsx · Reveal.tsx · MotionProvider.tsx
 └─ lib/
-   ├─ plans.ts                  LES PRIX et l'offre de lancement : source unique (affichage, formulaire, Stripe)
+   ├─ plans.ts                  LES PRIX et le préavis de résiliation : source unique (affichage, formulaire, Stripe)
    ├─ seo.ts · fonts.ts          balises de partage, polices
    ├─ i18n/fr.ts · en.ts        tous les textes du site
    ├─ validation.ts             schéma Zod partagé client/serveur
@@ -74,7 +74,6 @@ Toutes sont décrites dans `.env.example`.
 | `STRIPE_SECRET_KEY` | Clé secrète Stripe, de test (`sk_test_…`) | Pour le paiement |
 | `STRIPE_WEBHOOK_SECRET` | Secret de signature du webhook | Pour le suivi des paiements |
 | `STRIPE_ALLOW_LIVE` | `true` autorise une clé réelle | Seulement à l'activation |
-| `NEXT_PUBLIC_FOUNDERS_OFFER` | `false` retire l'offre « clients fondateurs » (bandeau, forfaits, FAQ, conditions) | Quand les 5 places sont prises |
 | `NEXT_PUBLIC_LEGAL_NAME` | Dénomination légale, affichée dans les mentions légales | Dès l'immatriculation |
 | `NEXT_PUBLIC_BUSINESS_NUMBER` | Numéro d'entreprise (ex. `NEQ 1234567890`) | Dès l'immatriculation |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Code de la balise HTML de Google Search Console | Pour valider le site dans Search Console |
@@ -117,11 +116,9 @@ Aucun produit n'est à créer dans Stripe : les montants sont envoyés depuis `s
 
 Le parcours Stripe n'a pas pu être exécuté pendant le développement (aucune clé disponible) : le tester en mode test avant toute mise en production.
 
-## Offre de lancement « clients fondateurs »
+## Forfaits sans engagement
 
-Réglée dans `src/lib/plans.ts` (`FOUNDERS_OFFER` : 5 places, engagement de 3 mois, frais de création offerts). Tant qu'elle est active : bandeau en haut des pages, encadré et prix barrés dans les forfaits, note dans la FAQ, section dans les conditions, et paiement Stripe sans frais de création.
-
-Pour la retirer : Netlify → Project configuration → Environment variables → `NEXT_PUBLIC_FOUNDERS_OFFER` = `false`, puis Deploys → Trigger deploy.
+Depuis le 18 novembre 2026, les forfaits sont sans engagement : résiliables en tout temps avec un préavis de 30 jours (`NOTICE_DAYS` dans `src/lib/plans.ts`) ; les frais de création ne sont pas remboursables une fois le projet commencé. La barre bleue du haut (`src/components/TopBar.tsx`) affiche le prix d'entrée et « sans engagement ».
 
 ## Sites de démonstration
 
