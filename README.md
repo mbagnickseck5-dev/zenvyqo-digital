@@ -112,7 +112,7 @@ Aucun produit n'est à créer dans Stripe : les montants sont envoyés depuis `s
 
 - valider les conditions d'abonnement (voir plus bas) ;
 - décider du traitement des taxes (TPS/TVQ) et, au besoin, activer Stripe Tax ;
-- l'engagement de 12 mois est contractuel : Stripe Checkout ne l'impose pas techniquement. Pour l'imposer, utiliser les « subscription schedules » de Stripe.
+- les forfaits sont sans engagement : une résiliation se traite en annulant l'abonnement dans Stripe à la fin du préavis de 30 jours.
 
 Le parcours Stripe n'a pas pu être exécuté pendant le développement (aucune clé disponible) : le tester en mode test avant toute mise en production.
 
@@ -139,18 +139,19 @@ Les quatre visuels du site sont générés par IA : le héros (`hero-sites.png` 
 
 ## Déploiement sur Netlify
 
-Le projet Netlify `zenvyqo-digital` existe déjà (https://zenvyqo-digital.netlify.app). `netlify.toml` contient la configuration de build ; Next.js est pris en charge sans extension.
+Le projet Netlify `zenvyqo-digital` existe déjà. Le site est en ligne sur **https://zenvyqodigital.com** (domaine principal depuis le 22 novembre 2026) ; https://zenvyqo-digital.netlify.app reste l'adresse technique de Netlify. `netlify.toml` contient la configuration de build ; Next.js est pris en charge sans extension.
 
 1. Pousser le code sur un dépôt GitHub.
 2. Netlify → projet `zenvyqo-digital` → Project configuration → Build & deploy → Link repository, puis choisir le dépôt.
-3. Project configuration → Environment variables : ajouter les variables du tableau ci-dessus (`NEXT_PUBLIC_SITE_URL=https://zenvyqo-digital.netlify.app` au minimum).
+3. Project configuration → Environment variables : ajouter les variables du tableau ci-dessus au besoin. `NEXT_PUBLIC_SITE_URL` est facultatif sur Netlify : à défaut, le site utilise l'adresse principale du projet (https://zenvyqodigital.com), fournie par Netlify au moment de la compilation.
 4. Chaque `git push` déclenche ensuite un déploiement.
+5. Après un changement de domaine principal, relancer un déploiement : les balises canoniques, le sitemap et les aperçus de partage sont générés à la compilation.
 
 ## Déploiement sur Vercel
 
 1. Pousser le projet sur GitHub.
 2. vercel.com → Add New → Project → importer le dépôt (Next.js est détecté, aucun réglage de build).
-3. Settings → Environment Variables : ajouter les variables ci-dessus. `NEXT_PUBLIC_SITE_URL` doit être l'URL finale (ex. `https://zenvyqo.ca`).
+3. Settings → Environment Variables : ajouter les variables ci-dessus. `NEXT_PUBLIC_SITE_URL` doit être l'URL finale (ex. `https://zenvyqodigital.com`).
 4. Deploy, puis Settings → Domains pour brancher le nom de domaine.
 5. Après tout changement de variable `NEXT_PUBLIC_…`, relancer un déploiement (elles sont lues à la compilation).
 
