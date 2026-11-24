@@ -308,6 +308,14 @@ export const fr = {
     rights: "Tous droits réservés.",
     serving: "Au service des PME de Montréal, du Québec et du Canada.",
   },
+  consent: {
+    label: "Témoins publicitaires",
+    text: "Avec votre accord, nous utilisons le pixel Meta (Facebook) pour mesurer l'efficacité de nos publicités et vous montrer des offres pertinentes. Si vous refusez, il reste désactivé.",
+    more: "En savoir plus",
+    accept: "Accepter",
+    refuse: "Refuser",
+    manage: "Gérer les témoins",
+  },
   thanks: {
     title: "Merci, votre paiement est confirmé",
     text: "Nous vous écrivons par courriel pour lancer la création de votre site.",
@@ -315,7 +323,7 @@ export const fr = {
     back: "Retour à l'accueil",
   },
   legal: {
-    updated: "Dernière mise à jour : 18 novembre 2026",
+    updated: "Dernière mise à jour : 24 novembre 2026",
     back: "Retour à l'accueil",
     pages: {
       "mentions-legales": {
@@ -364,6 +372,7 @@ export const fr = {
             paragraphs: [
               "Lorsque vous remplissez un formulaire, nous recueillons : votre nom, le nom de votre entreprise, votre adresse courriel, votre numéro de téléphone, votre ville et votre province, votre secteur d'activité et la description de votre projet.",
               "Si vous nous écrivez sur WhatsApp, nous recevons aussi votre numéro et le nom de votre profil WhatsApp. Nous ne recueillons que les renseignements nécessaires pour traiter votre demande.",
+              "Seulement si vous acceptez les témoins publicitaires, le pixel Meta recueille aussi des données sur votre navigation (voir « Témoins (cookies) et pixel Meta » ci-dessous).",
             ],
           },
           {
@@ -376,7 +385,7 @@ export const fr = {
           {
             heading: "Fournisseurs et lieu de conservation",
             paragraphs: [
-              "Les demandes envoyées par formulaire sont enregistrées chez notre hébergeur, Netlify, aux États-Unis, et, le cas échéant, dans notre base de données (Supabase). Les messages WhatsApp sont transmis par WhatsApp (Meta). Si le paiement en ligne est utilisé, il est traité par Stripe : nous ne conservons aucun numéro de carte.",
+              "Les demandes envoyées par formulaire sont enregistrées chez notre hébergeur, Netlify, aux États-Unis, et, le cas échéant, dans notre base de données (Supabase). Les messages WhatsApp sont transmis par WhatsApp (Meta). Avec votre accord, le pixel Meta transmet des données de navigation à Meta Platforms, notamment aux États-Unis. Si le paiement en ligne est utilisé, il est traité par Stripe : nous ne conservons aucun numéro de carte.",
               "Notre équipe travaille à distance et peut consulter vos renseignements depuis l'extérieur du Canada. Vos renseignements peuvent donc être conservés et consultés à l'extérieur du Québec.",
             ],
           },
@@ -387,8 +396,13 @@ export const fr = {
             ],
           },
           {
-            heading: "Témoins (cookies)",
-            paragraphs: ["Ce site n'utilise aucun témoin (cookie) de mesure d'audience, de publicité ou de profilage."],
+            heading: "Témoins (cookies) et pixel Meta",
+            paragraphs: [
+              "Ce site n'utilise aucun témoin de mesure d'audience. Il utilise un seul outil de suivi, le pixel Meta (Facebook), qui permet le profilage publicitaire. Il est désactivé par défaut : il ne se charge que si vous cliquez sur « Accepter » dans le bandeau des témoins.",
+              "Une fois activé, le pixel transmet à Meta Platforms l'adresse des pages que vous consultez, des renseignements techniques sur votre appareil et votre navigateur (dont l'adresse IP) et certaines actions, comme l'envoi d'une demande de devis ou un clic pour nous appeler, nous écrire ou nous joindre sur WhatsApp. Il dépose aussi des témoins (comme _fbp). Si la correspondance avancée de Meta est activée, l'adresse courriel ou le numéro de téléphone saisis dans un formulaire peuvent aussi être transmis sous forme chiffrée (hachée).",
+              "Ces données nous servent à mesurer l'efficacité de nos publicités et à les présenter à des personnes susceptibles d'être intéressées par nos services. Meta peut les relier à votre compte Facebook ou Instagram et les utilise selon sa propre politique de confidentialité.",
+              "Vous pouvez changer d'avis en tout temps avec le lien « Gérer les témoins » au bas des pages du site. Si vous refusez ou retirez votre accord, le pixel ne se charge plus et le site fonctionne normalement.",
+            ],
           },
           {
             heading: "Vos droits",

@@ -283,6 +283,14 @@ export const en: Dictionary = {
     rights: "All rights reserved.",
     serving: "Serving small businesses in Montréal, Québec and Canada.",
   },
+  consent: {
+    label: "Advertising cookies",
+    text: "With your consent, we use the Meta (Facebook) pixel to measure how well our ads work and show you relevant offers. If you decline, it stays off.",
+    more: "Learn more",
+    accept: "Accept",
+    refuse: "Decline",
+    manage: "Manage cookies",
+  },
   thanks: {
     title: "Thank you, your payment is confirmed",
     text: "We'll email you to start building your site.",
@@ -290,7 +298,7 @@ export const en: Dictionary = {
     back: "Back to home",
   },
   legal: {
-    updated: "Last updated: November 18, 2026",
+    updated: "Last updated: November 24, 2026",
     back: "Back to home",
     pages: {
       "mentions-legales": {
@@ -338,6 +346,7 @@ export const en: Dictionary = {
             paragraphs: [
               "When you fill in a form, we collect: your name, your business name, your email address, your phone number, your city and province, your industry and your project description.",
               "If you write to us on WhatsApp, we also receive your number and your WhatsApp profile name. We only collect the information needed to handle your request.",
+              "Only if you accept advertising cookies, the Meta pixel also collects data about your browsing (see “Cookies and Meta pixel” below).",
             ],
           },
           {
@@ -350,7 +359,7 @@ export const en: Dictionary = {
           {
             heading: "Providers and where data is kept",
             paragraphs: [
-              "Requests sent through our forms are stored with our host, Netlify, in the United States, and, where applicable, in our database (Supabase). WhatsApp messages are carried by WhatsApp (Meta). If online payment is used, it is processed by Stripe: we never store card numbers.",
+              "Requests sent through our forms are stored with our host, Netlify, in the United States, and, where applicable, in our database (Supabase). WhatsApp messages are carried by WhatsApp (Meta). With your consent, the Meta pixel sends browsing data to Meta Platforms, including in the United States. If online payment is used, it is processed by Stripe: we never store card numbers.",
               "Our team works remotely and may access your information from outside Canada. Your information may therefore be stored and accessed outside Québec.",
             ],
           },
@@ -361,8 +370,13 @@ export const en: Dictionary = {
             ],
           },
           {
-            heading: "Cookies",
-            paragraphs: ["This site uses no audience measurement, advertising or profiling cookies."],
+            heading: "Cookies and Meta pixel",
+            paragraphs: [
+              "This site uses no audience measurement cookies. It uses a single tracking tool, the Meta (Facebook) pixel, which enables advertising profiling. It is off by default: it only loads if you click “Accept” in the cookie banner.",
+              "Once on, the pixel sends Meta Platforms the address of the pages you visit, technical information about your device and browser (including your IP address) and certain actions, such as sending a quote request or clicking to call us, email us or reach us on WhatsApp. It also sets cookies (such as _fbp). If Meta's advanced matching is turned on, the email address or phone number entered in a form may also be sent in encrypted (hashed) form.",
+              "We use this data to measure how well our ads work and to show them to people likely to be interested in our services. Meta may link it to your Facebook or Instagram account and uses it under its own privacy policy.",
+              "You can change your mind at any time with the “Manage cookies” link at the bottom of the site's pages. If you decline or withdraw your consent, the pixel no longer loads and the site works normally.",
+            ],
           },
           {
             heading: "Your rights",

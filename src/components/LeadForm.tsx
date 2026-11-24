@@ -9,6 +9,7 @@ import { PROVINCES } from "@/lib/provinces";
 import { site } from "@/lib/site";
 import { btn } from "@/lib/ui";
 import { leadWhatsAppUrl, sendToApi, sendToNetlifyForms, type LeadPayload } from "@/lib/leadDelivery";
+import { trackPixel } from "@/lib/metaPixel";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { leadSchema, type LeadErrorCode } from "@/lib/validation";
 
@@ -115,6 +116,8 @@ export function LeadForm({
     }
     setResult({ id: api.id, captured });
     setStatus("success");
+    // Conversion pour les publicités Meta (sans le contenu du formulaire), si le visiteur a accepté.
+    trackPixel("Lead");
   }
 
   async function onPay() {

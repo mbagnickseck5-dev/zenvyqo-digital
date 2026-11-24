@@ -77,6 +77,7 @@ Toutes sont décrites dans `.env.example`.
 | `NEXT_PUBLIC_LEGAL_NAME` | Dénomination légale, affichée dans les mentions légales | Dès l'immatriculation |
 | `NEXT_PUBLIC_BUSINESS_NUMBER` | Numéro d'entreprise (ex. `NEQ 1234567890`) | Dès l'immatriculation |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Code de la balise HTML de Google Search Console | Pour valider le site dans Search Console |
+| `NEXT_PUBLIC_META_PIXEL_ID` | Remplace l'identifiant du pixel Meta (par défaut 1486753580061539) ; `off` le désactive | Non |
 
 ## Réception des demandes
 
@@ -87,6 +88,19 @@ Toutes sont décrites dans `.env.example`.
 3. **Supabase** (facultatif, voir plus bas) via `/api/leads`.
 
 Le code est dans `src/lib/leadDelivery.ts`.
+
+## Pixel Meta (publicités Facebook et Instagram)
+
+Le pixel Meta `1486753580061539` est installé sur toutes les pages, **avec consentement** : la Loi 25 exige que les outils de profilage restent désactivés tant que le visiteur ne les a pas activés.
+
+- Une bannière « Témoins publicitaires » s'affiche à la première visite (`src/components/CookieConsent.tsx`). Rien n'est envoyé à Meta avant un clic sur « Accepter » ; « Refuser » est aussi simple.
+- Le choix est gardé dans le navigateur (`localStorage`, clé `zq-consent-ads`). Le lien « Gérer les témoins », au pied de page, rouvre la bannière ; un refus efface les témoins `_fbp` / `_fbc`.
+- Événements envoyés (`src/components/MetaPixel.tsx`) : `PageView` à chaque page, `Lead` quand un formulaire de devis ou de contact est envoyé (sans son contenu), `Contact` au clic sur un lien WhatsApp, téléphone ou courriel.
+- Sites de démonstration : pas de bannière (pour garder l'allure d'un site client) ; le pixel n'y est chargé que si le visiteur l'a déjà accepté sur le site.
+- Le fragment `<noscript>` fourni par Meta n'est pas installé : il enverrait une visite sans consentement.
+- La politique de confidentialité (section « Témoins (cookies) et pixel Meta ») décrit le pixel. À mettre à jour si on ajoute un autre outil de suivi (Google Analytics, TikTok, etc.).
+
+Vérifier : Meta Events Manager → le pixel → « Tester les événements », ouvrir le site, cliquer sur « Accepter » : `PageView` doit apparaître.
 
 ## Supabase : enregistrer les prospects
 

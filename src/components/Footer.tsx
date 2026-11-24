@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import type { Dictionary, Locale } from "@/lib/i18n";
+import { META_PIXEL_ID } from "@/lib/metaPixel";
 import { site, whatsappUrl } from "@/lib/site";
+import { ConsentSettingsButton } from "./CookieConsent";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { Logo } from "./Logo";
 
@@ -73,6 +75,11 @@ export function Footer({ locale, t }: { locale: Locale; t: Dictionary }) {
                 </Link>
               </li>
             ))}
+            {META_PIXEL_ID && (
+              <li>
+                <ConsentSettingsButton label={t.consent.manage} className={`${linkClass} cursor-pointer`} />
+              </li>
+            )}
           </ul>
         </nav>
       </div>

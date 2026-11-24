@@ -2,8 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import "../../globals.css";
+import { CookieConsent } from "@/components/CookieConsent";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { MetaPixel } from "@/components/MetaPixel";
 import { MotionProvider } from "@/components/MotionProvider";
 import { TopBar } from "@/components/TopBar";
 import { QuoteProvider } from "@/components/QuoteProvider";
@@ -72,6 +74,9 @@ export default async function RootLayout({ children, params }: Params & { childr
             <WhatsAppFloat label={t.contact.whatsapp} message={t.contact.whatsappMessage} />
           </QuoteProvider>
         </MotionProvider>
+        {/* Pixel Meta : chargé seulement après « Accepter » dans la bannière (Loi 25). */}
+        <CookieConsent t={t.consent} privacyHref={`/${locale}/legal/confidentialite`} />
+        <MetaPixel />
       </body>
     </html>
   );
