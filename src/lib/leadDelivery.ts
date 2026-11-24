@@ -1,5 +1,5 @@
-/** Acheminement d'une demande : message WhatsApp prérempli vers le numéro Business,
- *  copie enregistrée dans Netlify Forms (sauvegarde) et API /api/leads (Supabase si configuré). */
+/** Acheminement d'une demande : Netlify Forms (enregistrement + courriel de notification à l'équipe)
+ *  et API /api/leads (Supabase si configuré). Le message WhatsApp prérempli est proposé en option. */
 import type { Dictionary, Locale } from "./i18n";
 import { getPlan } from "./plans";
 import { PROVINCES } from "./provinces";
@@ -50,11 +50,26 @@ export function leadWhatsAppUrl(p: LeadPayload, t: Dictionary["form"]): string |
   return whatsappUrl(leadMessage(p, t));
 }
 
-/** Copie de sauvegarde dans Netlify Forms (formulaire « demande » déclaré dans public/__forms.html). */
+/** Objet du courriel de notification (toujours en français : il s'adresse à l'équipe). */
+function notificationSubject(p: LeadPayload): string {
+  if (p.source === "contact") return `Nouveau message du site : ${p.fullName.trim()}`;
+  const plan = getPlan(p.plan);
+  const who = p.company.trim() || p.fullName.trim();
+  return `Nouvelle demande de devis : ${who}${plan ? ` (forfait ${plan.name})` : ""}`;
+}
+
+/**
+ * Envoi à Netlify Forms (formulaire « demande » déclaré dans public/__forms.html).
+ * Netlify enregistre la demande et l'envoie par courriel à l'adresse réglée dans
+ * Project configuration → Notifications → Form submission notifications.
+ * Le champ « subject » donne l'objet du courriel ; le champ « email » permet de
+ * répondre directement au client depuis la boîte de réception.
+ */
 export async function sendToNetlifyForms(p: LeadPayload): Promise<boolean> {
   try {
     const body = new URLSearchParams({
       "form-name": "demande",
+      subject: notificationSubject(p),
       source: p.source,
       locale: p.locale,
       plan: getPlan(p.plan)?.name ?? "",

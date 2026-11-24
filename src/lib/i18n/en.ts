@@ -228,6 +228,7 @@ export const en: Dictionary = {
     sending: "Sending…",
     errorSummary: "Some fields need to be corrected.",
     serverError: "Sending failed. Check your connection and try again.",
+    serverErrorAlt: "You can also send your request on WhatsApp, or reach us at {phone} or {email}.",
     errors: {
       required: "This field is required.",
       email: "Enter a valid email address, for example name@business.ca.",
@@ -238,12 +239,10 @@ export const en: Dictionary = {
     successText: "Thank you! We've received your request and will reply by email.",
     successCall: "You asked for a call: we'll contact you at the number provided.",
     successPlan: "Selected plan:",
-    waNote: "When you send it, WhatsApp opens with your request already written: just tap “Send”.",
-    waTitle: "Last step: send it on WhatsApp",
-    waOpened: "WhatsApp has opened with your request already written. Tap “Send” to pass it on to us.",
-    waReady: "Your request is ready: open WhatsApp and tap “Send” to pass it on to us.",
-    waOpen: "Open WhatsApp",
-    waBackup: "No WhatsApp? No problem: we've received your request and will reply by email or phone.",
+    waTitle: "Prefer WhatsApp?",
+    waReady: "Your request is already written: open WhatsApp and tap “Send” to continue the conversation with us.",
+    waOpen: "Continue on WhatsApp",
+    waSend: "Send on WhatsApp",
     waIntroQuote: "Hello Zenvyqo Digital, here is my quote request:",
     waIntroContact: "Hello Zenvyqo Digital, here is my message:",
     waSep: ": ",
@@ -359,7 +358,7 @@ export const en: Dictionary = {
           {
             heading: "Providers and where data is kept",
             paragraphs: [
-              "Requests sent through our forms are stored with our host, Netlify, in the United States, and, where applicable, in our database (Supabase). WhatsApp messages are carried by WhatsApp (Meta). With your consent, the Meta pixel sends browsing data to Meta Platforms, including in the United States. If online payment is used, it is processed by Stripe: we never store card numbers.",
+              "Requests sent through our forms are stored with our host, Netlify, in the United States, which forwards them to our Gmail inbox (Google), and, where applicable, in our database (Supabase). WhatsApp messages are carried by WhatsApp (Meta). With your consent, the Meta pixel sends browsing data to Meta Platforms, including in the United States. If online payment is used, it is processed by Stripe: we never store card numbers.",
               "Our team works remotely and may access your information from outside Canada. Your information may therefore be stored and accessed outside Québec.",
             ],
           },

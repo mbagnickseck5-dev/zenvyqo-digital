@@ -81,11 +81,13 @@ Toutes sont décrites dans `.env.example`.
 
 ## Réception des demandes
 
-À l'envoi d'un formulaire (devis ou contact) :
+Depuis le 24 novembre 2026, la demande part d'elle-même : le visiteur clique sur « Envoyer » et n'a besoin d'aucune application.
 
-1. **WhatsApp** s'ouvre chez le visiteur avec sa demande déjà rédigée (forfait, nom, entreprise, courriel, téléphone, ville, secteur, projet, rappel souhaité), adressée au numéro WhatsApp Business de `src/lib/site.ts`. Le visiteur n'a plus qu'à appuyer sur « Envoyer ».
-2. **Copie de sauvegarde** dans Netlify Forms (formulaire `demande`, déclaré dans `public/__forms.html`) : Netlify → projet → Forms. Pour recevoir chaque demande par courriel : Forms → Form notifications → Add notification → Email notification.
+1. **Courriel** : la demande est enregistrée dans Netlify Forms (formulaire `demande`, déclaré dans `public/__forms.html`), qui l'envoie par courriel à contactzenvyqo@gmail.com. Réglage : Netlify → projet → Project configuration → Notifications → Form submission notifications → Email notification, formulaire `demande`. L'objet du courriel est rempli par le site (« Nouvelle demande de devis : Entreprise (forfait X) ») et « Répondre » écrit directement au client.
+2. **WhatsApp, en option** : la confirmation propose « Continuer sur WhatsApp », avec la demande déjà rédigée, adressée au numéro WhatsApp Business de `src/lib/site.ts`. Si l'envoi échoue, le message d'erreur propose aussi WhatsApp, le téléphone et le courriel.
 3. **Supabase** (facultatif, voir plus bas) via `/api/leads`.
+
+Toutes les demandes restent visibles dans Netlify → projet → Forms → `demande`.
 
 Le code est dans `src/lib/leadDelivery.ts`.
 

@@ -252,6 +252,7 @@ export const fr = {
     sending: "Envoi en cours…",
     errorSummary: "Certains champs sont à corriger.",
     serverError: "L'envoi a échoué. Vérifiez votre connexion et réessayez.",
+    serverErrorAlt: "Vous pouvez aussi nous envoyer votre demande sur WhatsApp, ou nous joindre au {phone} ou à {email}.",
     errors: {
       required: "Ce champ est requis.",
       email: "Entrez une adresse courriel valide, par exemple nom@entreprise.ca.",
@@ -262,12 +263,10 @@ export const fr = {
     successText: "Merci ! Nous avons bien reçu votre demande et vous répondrons par courriel.",
     successCall: "Vous avez demandé un appel : nous vous contacterons au numéro indiqué.",
     successPlan: "Forfait sélectionné :",
-    waNote: "À l’envoi, WhatsApp s’ouvre avec votre demande déjà rédigée : il vous suffit d’appuyer sur « Envoyer ».",
-    waTitle: "Dernière étape : envoyez-la sur WhatsApp",
-    waOpened: "WhatsApp s’est ouvert avec votre demande déjà rédigée. Appuyez sur « Envoyer » pour nous la transmettre.",
-    waReady: "Votre demande est prête : ouvrez WhatsApp et appuyez sur « Envoyer » pour nous la transmettre.",
-    waOpen: "Ouvrir WhatsApp",
-    waBackup: "Pas de WhatsApp ? Aucun souci : votre demande nous est bien parvenue et nous vous répondrons par courriel ou par téléphone.",
+    waTitle: "Vous préférez WhatsApp ?",
+    waReady: "Votre demande est déjà rédigée : ouvrez WhatsApp et appuyez sur « Envoyer » pour poursuivre la conversation avec nous.",
+    waOpen: "Continuer sur WhatsApp",
+    waSend: "Envoyer par WhatsApp",
     waIntroQuote: "Bonjour Zenvyqo Digital, voici ma demande de devis :",
     waIntroContact: "Bonjour Zenvyqo Digital, voici mon message :",
     waSep: " : ",
@@ -385,7 +384,7 @@ export const fr = {
           {
             heading: "Fournisseurs et lieu de conservation",
             paragraphs: [
-              "Les demandes envoyées par formulaire sont enregistrées chez notre hébergeur, Netlify, aux États-Unis, et, le cas échéant, dans notre base de données (Supabase). Les messages WhatsApp sont transmis par WhatsApp (Meta). Avec votre accord, le pixel Meta transmet des données de navigation à Meta Platforms, notamment aux États-Unis. Si le paiement en ligne est utilisé, il est traité par Stripe : nous ne conservons aucun numéro de carte.",
+              "Les demandes envoyées par formulaire sont enregistrées chez notre hébergeur, Netlify, aux États-Unis, qui nous les transmet par courriel dans notre boîte Gmail (Google), et, le cas échéant, dans notre base de données (Supabase). Les messages WhatsApp sont transmis par WhatsApp (Meta). Avec votre accord, le pixel Meta transmet des données de navigation à Meta Platforms, notamment aux États-Unis. Si le paiement en ligne est utilisé, il est traité par Stripe : nous ne conservons aucun numéro de carte.",
               "Notre équipe travaille à distance et peut consulter vos renseignements depuis l'extérieur du Canada. Vos renseignements peuvent donc être conservés et consultés à l'extérieur du Québec.",
             ],
           },
